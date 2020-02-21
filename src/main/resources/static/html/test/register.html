@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册加密</title>
+    <script src="../../tools/jQuery/jquery-3.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<!--<form method="post" enctype="multipart/form-data" id="form">-->
+<!--    <div align="center"><input type="file" name="file" id="file"></div>-->
+<button id="submit" type="button">Hello world</button>
+<!--</form>-->
+</body>
+<script>
+    $(function () {
+        // var formData = new FormData($("#form")[0]);
+        var userAccount = window.btoa("201621122088");
+        var userPassword = window.btoa("123456");
+        $("#submit").click(function () {
+            $.ajax({
+                url: "/user/register",
+                type: "POST",
+                data:
+                    {
+                        "userAccount": userAccount,
+                        "userPassword": userPassword
+                    },
+                dataType: "json",
+                // // 告诉jQuery不要去处理发送的数据
+                // processData: false,
+                // // 告诉equerry不要去设置Content-Type请求头
+                // contentType: false,
+                // heads : {
+                //     'content-type' : 'application/x-www-form-urlencoded'
+                // },
+
+                success: function (result) {
+                    console.log(result);
+                    alert(result);
+                }
+            })
+        })
+    })
+</script>
+</html>

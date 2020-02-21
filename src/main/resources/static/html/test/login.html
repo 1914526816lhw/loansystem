@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <link href="../../tools/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <script src="../../tools/jQuery/jquery-3.4.1.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<!-- 小屏幕上水平导航栏会切换为垂直的 -->
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 3</a>
+        </li>
+    </ul>
+
+</nav>
+<!--<form method="post" enctype="multipart/form-data" id="form">-->
+<!--    <div align="center"><input type="file" name="file" id="file"></div>-->
+<button id="submit" type="button">Hello world</button>
+<!--</form>-->
+</body>
+<script>
+    $(function () {
+        // var formData = new FormData($("#form")[0]);
+        var userAccount = window.btoa("201621122088");
+        var userPassword = window.btoa("123456");
+        $("#submit").click(function () {
+            $.ajax({
+                url: "/user/login",
+                type: "POST",
+                data:
+                    {
+                        "userAccount": userAccount,
+                        "userPassword": userPassword
+                    },
+                dataType: "json",
+                // // 告诉jQuery不要去处理发送的数据
+                // processData: false,
+                // // 告诉equerry不要去设置Content-Type请求头
+                // contentType: false,
+                // heads : {
+                //     'content-type' : 'application/x-www-form-urlencoded'
+                // },
+
+                success: function (result) {
+                    console.log(result);
+                    alert(result);
+                }
+            })
+        })
+    })
+</script>
+<script src="../../script/js-tools/bootstrap.min.js"></script>
+</html>

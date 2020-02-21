@@ -27,6 +27,7 @@ public class RedisConfig {
      * @param
      * @return
      */
+
     public String get(final String key) {
         return redisTemplate.opsForValue().get(key);
     }

@@ -5,19 +5,27 @@ spring:
     url: jdbc:mysql://106.15.203.32:3306/loanDB?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.jdbc.Driver
 
-mybatis:
-  mapper-locations: classpath:com.stu.mapper/*Mapper.xml
-  type-aliases-package: com.stu.entity
+  #开启 multipart 文件上传功能
+  servlet:
+    multipart:
+      enabled: true
+      #文件写入磁盘的阀值
+      file-size-threshold: 2KB
+      #最大文件大小
+      max-file-size: 200MB
+      #最小请求大小
+      max-request-size: 215MB
 
-#showSql
-logging:
-  level:
-    com:
-      stu:
-        mapper: debug
+  # session 的存储方式
+  session:
+    store-type: redis
 
+##文件存储所需参数(file.upload-dir =./uploads 为自定义的参数)
+#所有通过 REST APIs 上传的文件都将存储在此目录下
+file:
+  upload-dir: E:\java\project\IDEAProject\loansystem\src\main\resources\static\uploads
 
-#redis的配置
+  #redis的配置
   redis:
     database: 3
     host: 127.0.0.1
@@ -30,23 +38,14 @@ logging:
       min-idle: 0
       max-wait: -1
 
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:com.stu.mapper/*Mapper.xml
+  type-aliases-package: com.stu.entity
 
-
-
-##配置分页插件pagehelper
-#pagehelper:
-#  helperDialect: mysql
-#  reasonable: true
-#  supportMethodsArguments: true
-#  params: count=countSql
-
-
-#  #服务器文件存放路径
-#  resources:
-#    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/itstyle/, file:/
-#  servlet:
-#    #上传文件大小限制
-#   multipart:
-#     max-request-size: 10MB
-#     max-file-size: 10MB
-
+#showSql
+logging:
+  level:
+    com:
+      stu:
+        mapper: debug

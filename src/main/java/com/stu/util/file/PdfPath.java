@@ -1,4 +1,4 @@
-package com.stu.util.filePath;
+package com.stu.util.file;
 
 /**
  * ClassName：PDFOutPath

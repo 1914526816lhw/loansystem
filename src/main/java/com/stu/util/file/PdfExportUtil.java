@@ -1,8 +1,7 @@
-package com.stu.util.fileExport;
+package com.stu.util.file;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
-import com.stu.util.filePath.PdfPath;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -30,7 +29,7 @@ public class PdfExportUtil {
      * @author lhw
      * CreateTime 2019/12/31 15:58
      */
-    public static void pdfOut(Map<String,Object> map) {
+    public static void pdfExport(Map<String,Object> map) {
         //模版路径
         String templatePath = PdfPath.PDF_TEMPLATE_PATH;
         //生成的新文件路径
@@ -106,6 +105,6 @@ public class PdfExportUtil {
         Map<String,Object> o=new HashMap();
         o.put("dateMap",map);
         o.put("imgMap",map2);
-        pdfOut(o);
+        pdfExport(o);
     }
 }
