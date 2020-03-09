@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.stu.annotation.PassToken;
 import com.stu.annotation.UserLoginToken;
 import com.stu.domain.User;
+import com.stu.domain.UserLogin;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -63,12 +64,12 @@ public class LoginInterceptor implements HandlerInterceptor {
                 } catch (JWTDecodeException e) {
                     throw new RuntimeException("401");
                 }
-                User user = null;//通过 userId 来查询用户的，判断用户数是否存在
+                UserLogin user = null;//通过 userId 来查询用户的，判断用户数是否存在
                 if (user == null) {
                     throw new RuntimeException("用户不存在，请重新登录！");
                 }
                 //验证 token
-                JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getUserPassword())).build();
+                JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getUserLoginPassword())).build();
                 try {
                     jwtVerifier.verify(token);
                 }catch (JWTDecodeException e){

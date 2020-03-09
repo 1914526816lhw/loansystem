@@ -18,7 +18,7 @@ import java.util.Map;
  * CreateTime: 2019/12/31 15:40
  * @version 1.0.0
  */
-public class PdfExportUtil {
+public class PdfUtil {
 
     /**
      * MethodName: PDFOut

@@ -165,7 +165,17 @@
         </dependency>
 
         <!--excel导入导出依赖包-->
-       
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.15</version>
+        </dependency>
+
     </dependencies>
 
     <build>

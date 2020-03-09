@@ -21,20 +21,22 @@ import java.util.Map;
  * @version 1.0.0
  */
 public class RSAUtil {
-    private static Map<Integer, String> keyMap = new HashMap<Integer, String>();  //用于封装随机产生的公钥与私钥
+    private static Map<String, String> keyMap = new HashMap<String, String>();  //用于封装随机产生的公钥与私钥
 
     public static void main(String[] args) throws Exception {
         //生成公钥和私钥
         genKeyPair();
         //加密字符串
 
-        String message = "李宏伟";
-        System.out.println("随机生成的公钥为:" + keyMap.get(0));
-        System.out.println("随机生成的私钥为:" + keyMap.get(1));
-        String messageEn = encrypt(message, keyMap.get(0));
+        String message = "123456";
+        System.out.println("随机生成的公钥为:" + keyMap.get("publicKey"));
+        System.out.println("随机生成的私钥为:" + keyMap.get("privateKey"));
+        String messageEn = encrypt(message, keyMap.get("publicKey"));
         System.out.println(message + "\t加密后的字符串为:" + messageEn);
-        String messageDe = decrypt(messageEn, keyMap.get(1));
+        String messageDe = decrypt(messageEn, keyMap.get("privateKey"));
         System.out.println("还原后的字符串为:" + messageDe);
+        String str = "ErxUeJsJYLshK+sluXfk4vZU4rQRzziKEKvOloA4K0EnPC42AEhCMW2GpJRlc7V1FfPm9mBRPyNkSW3wdpIdyxFC9VtdPONcX6Qf56dJIhVy6LZfWVc5Rf5QUbU74SeTqVVcuaC95kQodR3SpiZEyUugMSkBvE089oXCtb+xrUM=";
+        System.out.println(str.length());
     }
 
     /**
@@ -55,8 +57,8 @@ public class RSAUtil {
         // 得到私钥字符串
         String privateKeyString = new String(Base64.encodeBase64((privateKey.getEncoded())));
         // 将公钥和私钥保存到Map
-        keyMap.put(0, publicKeyString);  //0表示公钥
-        keyMap.put(1, privateKeyString);  //1表示私钥
+        keyMap.put("publicKey", publicKeyString);  //0表示公钥
+        keyMap.put("privateKey", privateKeyString);  //1表示私钥
     }
 
     /**

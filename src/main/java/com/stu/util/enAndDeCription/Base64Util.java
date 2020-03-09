@@ -20,4 +20,13 @@ public class Base64Util {
     public static String decode(byte[] bytes){
         return new String(Base64.decodeBase64(bytes));
     }
+
+    public static void main(String[] args) {
+
+        String str = "123456";
+        String password = Base64Util.encode(str.getBytes());
+        System.out.println(password);
+
+        System.out.println(Base64Util.decode(password.getBytes()));
+    }
 }

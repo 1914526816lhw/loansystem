@@ -11,41 +11,22 @@ import java.io.Serializable;
  * @version 1.0.0
  */
 public class User implements Serializable {
+    private String name;
+    private int age;
 
-    private String userid;
-    private String userAccount;
-    private String userPassword;
-
-    public String getUserAccount() {
-        return userAccount;
+    public int getAge() {
+        return age;
     }
 
-    public void setUserAccount(String userAccount) {
-        this.userAccount = userAccount;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getName() {
+        return name;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userid='" + userid + '\'' +
-                ", userAccount='" + userAccount + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                '}';
+    public void setName(String name) {
+        this.name = name;
     }
 }
