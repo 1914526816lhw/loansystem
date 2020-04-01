@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.mapper.AccountCharacterMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.AccountCharacter" >
+    <id column="account_character_id" property="accountCharacterId" jdbcType="INTEGER" />
+    <result column="account_character_name" property="accountCharacterName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_character_id, account_character_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accountCharacter
+    where account_character_id = #{accountCharacterId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accountCharacter
+    where account_character_id = #{accountCharacterId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.AccountCharacter" >
+    insert into accountCharacter (account_character_id, account_character_name
+      )
+    values (#{accountCharacterId,jdbcType=INTEGER}, #{accountCharacterName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.AccountCharacter" >
+    insert into accountCharacter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountCharacterId != null" >
+        account_character_id,
+      </if>
+      <if test="accountCharacterName != null" >
+        account_character_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountCharacterId != null" >
+        #{accountCharacterId,jdbcType=INTEGER},
+      </if>
+      <if test="accountCharacterName != null" >
+        #{accountCharacterName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.AccountCharacter" >
+    update accountCharacter
+    <set >
+      <if test="accountCharacterName != null" >
+        account_character_name = #{accountCharacterName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_character_id = #{accountCharacterId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.AccountCharacter" >
+    update accountCharacter
+    set account_character_name = #{accountCharacterName,jdbcType=VARCHAR}
+    where account_character_id = #{accountCharacterId,jdbcType=INTEGER}
+  </update>
+</mapper>

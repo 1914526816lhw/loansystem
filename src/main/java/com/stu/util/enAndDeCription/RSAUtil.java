@@ -2,41 +2,45 @@ package com.stu.util.enAndDeCription;
 
 
 import org.apache.commons.codec.binary.Base64;
-
 import javax.crypto.Cipher;
-import java.security.*;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
-
 /**
- * ClassName：RSAConfig
+ * ClassName：RSAUtil
  * Description：
  *
  * @author lihw
  * CreateTime: 2020/1/16 13:51
  * @version 1.0.0
  */
+
 public class RSAUtil {
-    private static Map<String, String> keyMap = new HashMap<String, String>();  //用于封装随机产生的公钥与私钥
+    public static Map<String, String> keyMap = new HashMap<String, String>();  //用于封装随机产生的公钥与私钥
 
     public static void main(String[] args) throws Exception {
         //生成公钥和私钥
         genKeyPair();
         //加密字符串
 
-        String message = "123456";
-        System.out.println("随机生成的公钥为:" + keyMap.get("publicKey"));
-        System.out.println("随机生成的私钥为:" + keyMap.get("privateKey"));
-        String messageEn = encrypt(message, keyMap.get("publicKey"));
-        System.out.println(message + "\t加密后的字符串为:" + messageEn);
-        String messageDe = decrypt(messageEn, keyMap.get("privateKey"));
+//        String message = "123456";
+//
+//        System.out.println("随机生成的公钥为:" + keyMap.get("passwordPublicKey"));
+//        System.out.println("随机生成的私钥为:" + keyMap.get("passwordPrivateKey"));
+//        String messageEn = encrypt(message, keyMap.get("passwordPublicKey"));
+//        System.out.println(message + "\t加密后的字符串为:" + messageEn);
+
+        String messageDe = decrypt("jO+h/FN5L6TT4p8ctZkjlYkzm9sz0dMm5h2wtS8EBj1cFGcvfXZ1m3J4D/qY/O+ueInu4SC2+fT2BYQ7EAtsKjuDN7SxQiFRII7G5naduWpXDdYQ1A6lFzvSs/4uf55kUcF7wAifZ+C2hwP+MCPPrjfIw2LzzwPYHXdXU2rIdZ8=", keyMap.get("passwordPrivateKey"));
         System.out.println("还原后的字符串为:" + messageDe);
-        String str = "ErxUeJsJYLshK+sluXfk4vZU4rQRzziKEKvOloA4K0EnPC42AEhCMW2GpJRlc7V1FfPm9mBRPyNkSW3wdpIdyxFC9VtdPONcX6Qf56dJIhVy6LZfWVc5Rf5QUbU74SeTqVVcuaC95kQodR3SpiZEyUugMSkBvE089oXCtb+xrUM=";
-        System.out.println(str.length());
+
     }
 
     /**
@@ -48,7 +52,7 @@ public class RSAUtil {
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         // 初始化密钥对生成器，密钥大小为96-1024位
-        keyPairGen.initialize(1024, new SecureRandom());
+        keyPairGen.initialize(2048, new SecureRandom());
         // 生成一个密钥对，保存在keyPair中
         KeyPair keyPair = keyPairGen.generateKeyPair();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();   // 得到私钥
@@ -57,8 +61,8 @@ public class RSAUtil {
         // 得到私钥字符串
         String privateKeyString = new String(Base64.encodeBase64((privateKey.getEncoded())));
         // 将公钥和私钥保存到Map
-        keyMap.put("publicKey", publicKeyString);  //0表示公钥
-        keyMap.put("privateKey", privateKeyString);  //1表示私钥
+        keyMap.put("passwordPublicKey", publicKeyString);  //0表示公钥
+        keyMap.put("passwordPrivateKey", privateKeyString);  //1表示私钥
     }
 
     /**

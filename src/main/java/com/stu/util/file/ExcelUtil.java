@@ -1,6 +1,6 @@
 package com.stu.util.file;
 
-import com.stu.domain.User;
+//import com.stu.domain.User;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -134,13 +134,13 @@ public class ExcelUtil {
         String[] title = {"姓名", "年龄"};
 
         List<Object> list = new ArrayList<Object>();
-
-        for(int i=0;i<10;i++){
-            User u = new User();
-            u.setName("张三"+i);
-            u.setAge(10+i);
-            list.add(u);
-        }
+//
+//        for(int i=0;i<10;i++){
+//            User u = new User();
+//            u.setName("张三"+i);
+//            u.setAge(10+i);
+//            list.add(u);
+//        }
 
         byte b[] = ExcelUtil.exportExcel(sheetTitle, title, list);
 

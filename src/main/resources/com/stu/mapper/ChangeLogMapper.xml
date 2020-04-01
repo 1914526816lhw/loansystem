@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.mapper.ChangeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.ChangeLog" >
+    <id column="change_reason_id" property="changeReasonId" jdbcType="INTEGER" />
+    <result column="change_reason_content" property="changeReasonContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    change_reason_id, change_reason_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from changeLog
+    where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from changeLog
+    where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.ChangeLog" >
+    insert into changeLog (change_reason_id, change_reason_content
+      )
+    values (#{changeReasonId,jdbcType=INTEGER}, #{changeReasonContent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.ChangeLog" >
+    insert into changeLog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="changeReasonId != null" >
+        change_reason_id,
+      </if>
+      <if test="changeReasonContent != null" >
+        change_reason_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="changeReasonId != null" >
+        #{changeReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="changeReasonContent != null" >
+        #{changeReasonContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.ChangeLog" >
+    update changeLog
+    <set >
+      <if test="changeReasonContent != null" >
+        change_reason_content = #{changeReasonContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.ChangeLog" >
+    update changeLog
+    set change_reason_content = #{changeReasonContent,jdbcType=VARCHAR}
+    where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -22,24 +22,26 @@ public class RedisConfig {
     /**
      * MethodName: 读取缓存
      * Description:
-     * @author lhw
-     * CreateTime 2019/12/12 17:56
+     *
      * @param
      * @return
+     * @author lhw
+     * CreateTime 2019/12/12 17:56
      */
 
     public String get(final String key) {
         return redisTemplate.opsForValue().get(key);
     }
 
-   /**
-    * MethodName: 写入缓存
-    * Description:
-    * @author lhw
-    * CreateTime 2019/12/12 17:56
-    * @param
-    * @return
-    */
+    /**
+     * MethodName: 写入缓存
+     * Description:
+     *
+     * @param
+     * @return
+     * @author lhw
+     * CreateTime 2019/12/12 17:56
+     */
     public boolean set(final String key, String value) {
         boolean result = false;
         try {
@@ -54,10 +56,11 @@ public class RedisConfig {
     /**
      * MethodName: 更新缓存
      * Description:
-     * @author lhw
-     * CreateTime 2019/12/12 17:56
+     *
      * @param
      * @return
+     * @author lhw
+     * CreateTime 2019/12/12 17:56
      */
     public boolean getAndSet(final String key, String value) {
         boolean result = false;
@@ -73,10 +76,11 @@ public class RedisConfig {
     /**
      * MethodName: 删除缓存
      * Description:
-     * @author lhw
-     * CreateTime 2019/12/12 17:57
+     *
      * @param
      * @return
+     * @author lhw
+     * CreateTime 2019/12/12 17:57
      */
     public boolean delete(final String key) {
         boolean result = false;
@@ -89,15 +93,16 @@ public class RedisConfig {
         return result;
     }
 
-   /**
-    * MethodName: 指定时间缓存失效
-    * Description:
-    * @author lhw
-    * CreateTime 2019/12/12 17:57
-    * @param key
-    * @param time (时间为：秒)
-    * @return
-    */
+    /**
+     * MethodName: 指定时间缓存失效
+     * Description:
+     *
+     * @param key
+     * @param time (时间为：秒)
+     * @return
+     * @author lhw
+     * CreateTime 2019/12/12 17:57
+     */
     public boolean expire(String key, long time) {
         try {
             if (time > 0) {
@@ -109,14 +114,16 @@ public class RedisConfig {
             return false;
         }
     }
-   /**
-    * MethodName: 判断key是否存在
-    * Description:
-    * @author lhw
-    * CreateTime 2019/12/12 22:29
-    * @param
-    * @return
-    */
+
+    /**
+     * MethodName: 判断key是否存在
+     * Description:
+     *
+     * @param
+     * @return
+     * @author lhw
+     * CreateTime 2019/12/12 22:29
+     */
     public boolean hasKey(String key) {
         try {
             return redisTemplate.hasKey(key);

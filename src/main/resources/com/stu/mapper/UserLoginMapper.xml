@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.mapper.UserLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.UserLogin" >
+    <id column="user_login_id" property="userLoginId" jdbcType="INTEGER" />
+    <result column="user_login_account" property="userLoginAccount" jdbcType="VARCHAR" />
+    <result column="user_login_password" property="userLoginPassword" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_login_id, user_login_account, user_login_password, user_id
+  </sql>
+  <!--======================================== 查询操作 =========================================-->
+  <select id="selectUserLoginByAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userLogin
+    where user_login_account = #{userLoginAccount,jdbcType=VARCHAR}
+  </select>
+
+
+
+
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userLogin
+    where user_login_id = #{userLoginId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertUserLogin" parameterType="com.stu.entity.UserLogin" >
+    insert into userLogin (user_login_account, user_login_password,user_id)
+    values ( #{userLoginAccount,jdbcType=VARCHAR}, #{userLoginPassword,jdbcType=VARCHAR},#{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.UserLogin" >
+    insert into userLogin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userLoginId != null" >
+        user_login_id,
+      </if>
+      <if test="userLoginAccount != null" >
+        user_login_account,
+      </if>
+      <if test="userLoginPassword != null" >
+        user_login_password,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userLoginId != null" >
+        #{userLoginId,jdbcType=INTEGER},
+      </if>
+      <if test="userLoginAccount != null" >
+        #{userLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginPassword != null" >
+        #{userLoginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.UserLogin" >
+    update userLogin
+    <set >
+      <if test="userLoginAccount != null" >
+        user_login_account = #{userLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginPassword != null" >
+        user_login_password = #{userLoginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_login_id = #{userLoginId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.UserLogin" >
+    update userLogin
+    set user_login_account = #{userLoginAccount,jdbcType=VARCHAR},
+      user_login_password = #{userLoginPassword,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
+    where user_login_id = #{userLoginId,jdbcType=INTEGER}
+  </update>
+
+  <update id="resetPwd" parameterType="com.stu.entity.UserLogin">
+        update userLogin
+        set user_login_password = #{userLoginPassword,jdbcType=VARCHAR}
+        where user_login_account = #{userLoginAccount,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

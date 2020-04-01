@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.mapper.FundingCenterMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.FundingCenter" >
+    <id column="funding_center_id" property="fundingCenterId" jdbcType="INTEGER" />
+    <result column="funding_center_name" property="fundingCenterName" jdbcType="VARCHAR" />
+    <result column="funding_center_address" property="fundingCenterAddress" jdbcType="VARCHAR" />
+    <result column="fundingCenter_phone" property="fundingcenterPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    funding_center_id, funding_center_name, funding_center_address, fundingCenter_phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fundingCenter
+    where funding_center_id = #{fundingCenterId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fundingCenter
+    where funding_center_id = #{fundingCenterId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.FundingCenter" >
+    insert into fundingCenter (funding_center_id, funding_center_name, 
+      funding_center_address, fundingCenter_phone
+      )
+    values (#{fundingCenterId,jdbcType=INTEGER}, #{fundingCenterName,jdbcType=VARCHAR}, 
+      #{fundingCenterAddress,jdbcType=VARCHAR}, #{fundingcenterPhone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.FundingCenter" >
+    insert into fundingCenter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fundingCenterId != null" >
+        funding_center_id,
+      </if>
+      <if test="fundingCenterName != null" >
+        funding_center_name,
+      </if>
+      <if test="fundingCenterAddress != null" >
+        funding_center_address,
+      </if>
+      <if test="fundingcenterPhone != null" >
+        fundingCenter_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fundingCenterId != null" >
+        #{fundingCenterId,jdbcType=INTEGER},
+      </if>
+      <if test="fundingCenterName != null" >
+        #{fundingCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="fundingCenterAddress != null" >
+        #{fundingCenterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fundingcenterPhone != null" >
+        #{fundingcenterPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.FundingCenter" >
+    update fundingCenter
+    <set >
+      <if test="fundingCenterName != null" >
+        funding_center_name = #{fundingCenterName,jdbcType=VARCHAR},
+      </if>
+      <if test="fundingCenterAddress != null" >
+        funding_center_address = #{fundingCenterAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fundingcenterPhone != null" >
+        fundingCenter_phone = #{fundingcenterPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where funding_center_id = #{fundingCenterId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.FundingCenter" >
+    update fundingCenter
+    set funding_center_name = #{fundingCenterName,jdbcType=VARCHAR},
+      funding_center_address = #{fundingCenterAddress,jdbcType=VARCHAR},
+      fundingCenter_phone = #{fundingcenterPhone,jdbcType=VARCHAR}
+    where funding_center_id = #{fundingCenterId,jdbcType=INTEGER}
+  </update>
+</mapper>

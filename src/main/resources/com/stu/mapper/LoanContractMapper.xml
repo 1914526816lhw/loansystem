@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.mapper.LoanContractMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.LoanContract" >
+    <id column="loan_id" property="loanId" jdbcType="INTEGER" />
+    <result column="contract_id" property="contractId" jdbcType="VARCHAR" />
+    <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
+    <result column="loan_money" property="loanMoney" jdbcType="DOUBLE" />
+    <result column="loan_date" property="loanDate" jdbcType="DATE" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    loan_id, contract_id, loan_name, loan_money, loan_date, 
+repayment_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from loanContract
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from loanContract
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.LoanContract" >
+    insert into loanContract (loan_id, contract_id, loan_name, 
+      loan_money, loan_date, 
+repayment_date
+      )
+    values (#{loanId,jdbcType=INTEGER}, #{contractId,jdbcType=VARCHAR}, #{loanName,jdbcType=VARCHAR}, 
+      #{loanMoney,jdbcType=DOUBLE}, #{loanDate,jdbcType=DATE}, #{
+repaymentDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.LoanContract" >
+    insert into loanContract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loanId != null" >
+        loan_id,
+      </if>
+      <if test="contractId != null" >
+        contract_id,
+      </if>
+      <if test="loanName != null" >
+        loan_name,
+      </if>
+      <if test="loanMoney != null" >
+        loan_money,
+      </if>
+      <if test="loanDate != null" >
+        loan_date,
+      </if>
+      <if test="
+repaymentDate != null" >
+        
+repayment_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loanId != null" >
+        #{loanId,jdbcType=INTEGER},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanName != null" >
+        #{loanName,jdbcType=VARCHAR},
+      </if>
+      <if test="loanMoney != null" >
+        #{loanMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="loanDate != null" >
+        #{loanDate,jdbcType=DATE},
+      </if>
+      <if test="
+repaymentDate != null" >
+        #{
+repaymentDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.LoanContract" >
+    update loanContract
+    <set >
+      <if test="contractId != null" >
+        contract_id = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanName != null" >
+        loan_name = #{loanName,jdbcType=VARCHAR},
+      </if>
+      <if test="loanMoney != null" >
+        loan_money = #{loanMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="loanDate != null" >
+        loan_date = #{loanDate,jdbcType=DATE},
+      </if>
+      <if test="
+repaymentDate != null" >
+        
+repayment_date = #{
+repaymentDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.LoanContract" >
+    update loanContract
+    set contract_id = #{contractId,jdbcType=VARCHAR},
+      loan_name = #{loanName,jdbcType=VARCHAR},
+      loan_money = #{loanMoney,jdbcType=DOUBLE},
+      loan_date = #{loanDate,jdbcType=DATE},
+      
+repayment_date = #{
+repaymentDate,jdbcType=VARCHAR}
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </update>
+</mapper>
