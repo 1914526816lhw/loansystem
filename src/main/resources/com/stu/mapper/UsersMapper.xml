@@ -10,7 +10,7 @@
         <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
         <result column="user_sex" jdbcType="VARCHAR" property="userSex"/>
         <result column="user_middle_school" jdbcType="VARCHAR" property="userMiddleSchool"/>
-        <result column="user_famous_race" jdbcType="VARCHAR" property="userFamousRace"/>
+        <result column="user_famous_race_id" jdbcType="INTEGER" property="userFamousRaceId"/>
         <result column="user_permanent_address" jdbcType="VARCHAR" property="userPermanentAddress"/>
         <result column="user_mail_address" jdbcType="VARCHAR" property="userMailAddress"/>
         <result column=" user_mail_box" jdbcType="VARCHAR" property=" userMailBox"/>
@@ -57,7 +57,7 @@
     </resultMap>
     <sql id="Base_Column_List">
     user_id, user_name, user_identity, user_security_question, user_security_answer,
-    user_phone, user_sex, user_middle_school, user_famous_race, account_character_id,
+    user_phone, user_sex, user_middle_school, user_famous_race_id, account_character_id,
     funding_center_id, user_permanent_address, user_mail_address, user_mail_box, user_qq,
     user_weChat, user_postal_address, user_family_address, user_postal_code, user_family_phone,
     user_contact_name, contact_work_unit, user_contact_number, user_contact_phone, user_contact_identity,
@@ -107,7 +107,7 @@
       user_phone = #{userPhone,jdbcType=VARCHAR},
       user_sex = #{userSex,jdbcType=VARCHAR},
       user_middle_school = #{userMiddleSchool,jdbcType=VARCHAR},
-      user_famous_race = #{userFamousRace,jdbcType=VARCHAR},
+      user_famous_race_id = #{userFamousRaceId,jdbcType=INTEGER},
       account_character_id = #{accountCharacterId,jdbcType=INTEGER},
       funding_center_id = #{fundingCenterId,jdbcType=INTEGER},
       user_permanent_address = #{userPermanentAddress,jdbcType=VARCHAR},
