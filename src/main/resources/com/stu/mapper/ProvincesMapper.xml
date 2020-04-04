@@ -15,6 +15,14 @@
     from provinces
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAllProvince" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from provinces
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from provinces
     where id = #{id,jdbcType=INTEGER}

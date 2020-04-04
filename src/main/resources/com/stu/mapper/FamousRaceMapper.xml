@@ -14,6 +14,14 @@
     from famousRace
     where famous_race_id = #{famousRaceId,jdbcType=INTEGER}
   </select>
+  <select id="selectAllFamousRace" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from famousRace
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from famousRace
     where famous_race_id = #{famousRaceId,jdbcType=INTEGER}

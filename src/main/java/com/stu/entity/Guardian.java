@@ -1,17 +1,11 @@
 package com.stu.entity;
 
-import java.util.Date;
-
 public class Guardian {
     private Integer guardianId;
 
     private String guardianName;
 
     private String guardianIdentity;
-
-    private Date guardianIdentityStart;
-
-    private Date guardianIdentityEnd;
 
     private String guardianAddress;
 
@@ -24,8 +18,6 @@ public class Guardian {
     private String guardianHealth;
 
     private String guardianTel;
-
-    private Integer changeResonId;
 
     public Integer getGuardianId() {
         return guardianId;
@@ -49,22 +41,6 @@ public class Guardian {
 
     public void setGuardianIdentity(String guardianIdentity) {
         this.guardianIdentity = guardianIdentity == null ? null : guardianIdentity.trim();
-    }
-
-    public Date getGuardianIdentityStart() {
-        return guardianIdentityStart;
-    }
-
-    public void setGuardianIdentityStart(Date guardianIdentityStart) {
-        this.guardianIdentityStart = guardianIdentityStart;
-    }
-
-    public Date getGuardianIdentityEnd() {
-        return guardianIdentityEnd;
-    }
-
-    public void setGuardianIdentityEnd(Date guardianIdentityEnd) {
-        this.guardianIdentityEnd = guardianIdentityEnd;
     }
 
     public String getGuardianAddress() {
@@ -113,13 +89,5 @@ public class Guardian {
 
     public void setGuardianTel(String guardianTel) {
         this.guardianTel = guardianTel == null ? null : guardianTel.trim();
-    }
-
-    public Integer getChangeResonId() {
-        return changeResonId;
-    }
-
-    public void setChangeResonId(Integer changeResonId) {
-        this.changeResonId = changeResonId;
     }
 }

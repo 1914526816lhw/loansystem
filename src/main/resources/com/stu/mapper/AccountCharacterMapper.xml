@@ -14,6 +14,14 @@
     from accountCharacter
     where account_character_id = #{accountCharacterId,jdbcType=INTEGER}
   </select>
+  <select id="selectAllAccountCharacter" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from accountCharacter
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from accountCharacter
     where account_character_id = #{accountCharacterId,jdbcType=INTEGER}

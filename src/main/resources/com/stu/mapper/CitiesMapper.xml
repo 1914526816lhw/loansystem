@@ -10,11 +10,11 @@
   <sql id="Base_Column_List" >
     id, city_id, city_name, province_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectAllCityByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from cities
-    where id = #{id,jdbcType=INTEGER}
+    where province_id = #{provinceId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cities

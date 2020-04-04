@@ -5,20 +5,16 @@
     <id column="guardian_id" property="guardianId" jdbcType="INTEGER" />
     <result column="guardian_name" property="guardianName" jdbcType="VARCHAR" />
     <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR" />
-    <result column="guardian_identity_start" property="guardianIdentityStart" jdbcType="DATE" />
-    <result column="guardian_identity_end" property="guardianIdentityEnd" jdbcType="DATE" />
     <result column="guardian_address" property="guardianAddress" jdbcType="VARCHAR" />
     <result column="guardian_family_address" property="guardianFamilyAddress" jdbcType="VARCHAR" />
     <result column="guardian_postal_code" property="guardianPostalCode" jdbcType="VARCHAR" />
     <result column="guardian_family_phone" property="guardianFamilyPhone" jdbcType="VARCHAR" />
     <result column="guardian_health" property="guardianHealth" jdbcType="VARCHAR" />
     <result column="guardian_tel" property="guardianTel" jdbcType="VARCHAR" />
-    <result column="change_reson_id" property="changeResonId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    guardian_id, guardian_name, guardian_identity, guardian_identity_start, guardian_identity_end, 
-    guardian_address, guardian_family_address, guardian_postal_code, guardian_family_phone, 
-    guardian_health, guardian_tel, change_reson_id
+    guardian_id, guardian_name, guardian_identity, guardian_address, guardian_family_address, 
+    guardian_postal_code, guardian_family_phone, guardian_health, guardian_tel
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -32,15 +28,13 @@
   </delete>
   <insert id="insert" parameterType="com.stu.entity.Guardian" >
     insert into guardian (guardian_id, guardian_name, guardian_identity, 
-      guardian_identity_start, guardian_identity_end, guardian_address, 
-      guardian_family_address, guardian_postal_code, 
-      guardian_family_phone, guardian_health, guardian_tel, 
-      change_reson_id)
+      guardian_address, guardian_family_address, 
+      guardian_postal_code, guardian_family_phone, 
+      guardian_health, guardian_tel)
     values (#{guardianId,jdbcType=INTEGER}, #{guardianName,jdbcType=VARCHAR}, #{guardianIdentity,jdbcType=VARCHAR}, 
-      #{guardianIdentityStart,jdbcType=DATE}, #{guardianIdentityEnd,jdbcType=DATE}, #{guardianAddress,jdbcType=VARCHAR}, 
-      #{guardianFamilyAddress,jdbcType=VARCHAR}, #{guardianPostalCode,jdbcType=VARCHAR}, 
-      #{guardianFamilyPhone,jdbcType=VARCHAR}, #{guardianHealth,jdbcType=VARCHAR}, #{guardianTel,jdbcType=VARCHAR}, 
-      #{changeResonId,jdbcType=INTEGER})
+      #{guardianAddress,jdbcType=VARCHAR}, #{guardianFamilyAddress,jdbcType=VARCHAR}, 
+      #{guardianPostalCode,jdbcType=VARCHAR}, #{guardianFamilyPhone,jdbcType=VARCHAR}, 
+      #{guardianHealth,jdbcType=VARCHAR}, #{guardianTel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.stu.entity.Guardian" >
     insert into guardian
@@ -53,12 +47,6 @@
       </if>
       <if test="guardianIdentity != null" >
         guardian_identity,
-      </if>
-      <if test="guardianIdentityStart != null" >
-        guardian_identity_start,
-      </if>
-      <if test="guardianIdentityEnd != null" >
-        guardian_identity_end,
       </if>
       <if test="guardianAddress != null" >
         guardian_address,
@@ -78,9 +66,6 @@
       <if test="guardianTel != null" >
         guardian_tel,
       </if>
-      <if test="changeResonId != null" >
-        change_reson_id,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="guardianId != null" >
@@ -91,12 +76,6 @@
       </if>
       <if test="guardianIdentity != null" >
         #{guardianIdentity,jdbcType=VARCHAR},
-      </if>
-      <if test="guardianIdentityStart != null" >
-        #{guardianIdentityStart,jdbcType=DATE},
-      </if>
-      <if test="guardianIdentityEnd != null" >
-        #{guardianIdentityEnd,jdbcType=DATE},
       </if>
       <if test="guardianAddress != null" >
         #{guardianAddress,jdbcType=VARCHAR},
@@ -116,9 +95,6 @@
       <if test="guardianTel != null" >
         #{guardianTel,jdbcType=VARCHAR},
       </if>
-      <if test="changeResonId != null" >
-        #{changeResonId,jdbcType=INTEGER},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Guardian" >
@@ -129,12 +105,6 @@
       </if>
       <if test="guardianIdentity != null" >
         guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},
-      </if>
-      <if test="guardianIdentityStart != null" >
-        guardian_identity_start = #{guardianIdentityStart,jdbcType=DATE},
-      </if>
-      <if test="guardianIdentityEnd != null" >
-        guardian_identity_end = #{guardianIdentityEnd,jdbcType=DATE},
       </if>
       <if test="guardianAddress != null" >
         guardian_address = #{guardianAddress,jdbcType=VARCHAR},
@@ -154,9 +124,6 @@
       <if test="guardianTel != null" >
         guardian_tel = #{guardianTel,jdbcType=VARCHAR},
       </if>
-      <if test="changeResonId != null" >
-        change_reson_id = #{changeResonId,jdbcType=INTEGER},
-      </if>
     </set>
     where guardian_id = #{guardianId,jdbcType=INTEGER}
   </update>
@@ -164,15 +131,12 @@
     update guardian
     set guardian_name = #{guardianName,jdbcType=VARCHAR},
       guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},
-      guardian_identity_start = #{guardianIdentityStart,jdbcType=DATE},
-      guardian_identity_end = #{guardianIdentityEnd,jdbcType=DATE},
       guardian_address = #{guardianAddress,jdbcType=VARCHAR},
       guardian_family_address = #{guardianFamilyAddress,jdbcType=VARCHAR},
       guardian_postal_code = #{guardianPostalCode,jdbcType=VARCHAR},
       guardian_family_phone = #{guardianFamilyPhone,jdbcType=VARCHAR},
       guardian_health = #{guardianHealth,jdbcType=VARCHAR},
-      guardian_tel = #{guardianTel,jdbcType=VARCHAR},
-      change_reson_id = #{changeResonId,jdbcType=INTEGER}
+      guardian_tel = #{guardianTel,jdbcType=VARCHAR}
     where guardian_id = #{guardianId,jdbcType=INTEGER}
   </update>
 </mapper>

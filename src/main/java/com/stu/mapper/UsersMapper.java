@@ -22,6 +22,6 @@ public interface UsersMapper {
     int registerUsers(Users users);
     UserLogin selectUserLoginByPhone(String userPhone);
     Users selectUserByIdentity(String userIdentity);
-    int updateSecurityQuestion(String userIdentity,String userSecurityQuestion,String userSecurityAnswer);
-    int updateUserPhone(String userIdentity,String userPhone) throws Exception;
+    int updateSecurityQuestion(String userIdentity, String userSecurityQuestion, String userSecurityAnswer);
+    int updateUserPhone(String userIdentity, String userPhone);
 }

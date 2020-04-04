@@ -87,6 +87,14 @@ public class UsersController {
         return usersService.selectSecurityByUserIdentity(userIdentity);
     }
 
+    /**
+     * MethodName: updateSecurityQuestion
+     * Description: 修改密保问题
+     * @author lihw
+     * CreateTime 2020/4/1 17:34
+     * @param userLoginAccount,userSecurityQuestion,userSecurityAnswer
+     * @return jsonObject
+     */
     @UserLoginToken
     @RequestMapping("/updateSecurityQuestion")
     public JSONObject updateSecurityQuestion(String userLoginAccount,String userSecurityQuestion,String userSecurityAnswer){
@@ -105,4 +113,17 @@ public class UsersController {
         return usersService.isFirstLoan(userLoginAccount);
     }
 
+    /**
+     * MethodName: getUserName
+     * Description: 获取用户名
+     * @author lihw
+     * CreateTime 2020/4/1 17:35
+     * @param userLoginAccount
+     * @return jsonObject
+     */
+    @UserLoginToken
+    @RequestMapping("/getUserName")
+    public JSONObject getUserName(String userLoginAccount){
+        return usersService.getUserName(userLoginAccount);
+    }
 }

@@ -28,6 +28,7 @@ public class PhoneVerifyService {
         System.out.println(code);
         redisConfig.set("autoCode", code);
         redisConfig.expire("autoCode", 600);//设置验证码10分钟之后失效
+        System.out.println(redisConfig.get("autoCode"));
         //成功返回0，失败返回1
         if ((!"".equals(userPhone)) && userPhone.length() > 0) {
             //把后台生成的code和所发送的手机号传进发送消息类，调用执行。

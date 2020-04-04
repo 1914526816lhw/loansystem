@@ -13,7 +13,11 @@ public class LoanContract {
 
     private Date loanDate;
 
-    private String repaymentDate;
+    private Date repaymentDate;
+
+    private String userIdentity;
+
+    private String guadianIdentity;
 
     public Integer getLoanId() {
         return loanId;
@@ -55,11 +59,27 @@ public class LoanContract {
         this.loanDate = loanDate;
     }
 
-    public String getRepaymentDate() {
+    public Date getRepaymentDate() {
         return repaymentDate;
     }
 
-    public void setRepaymentDate(String repaymentDate) {
-        this.repaymentDate = repaymentDate == null ? null : repaymentDate.trim();
+    public void setRepaymentDate(Date repaymentDate) {
+        this.repaymentDate = repaymentDate;
+    }
+
+    public String getUserIdentity() {
+        return userIdentity;
+    }
+
+    public void setUserIdentity(String userIdentity) {
+        this.userIdentity = userIdentity == null ? null : userIdentity.trim();
+    }
+
+    public String getGuadianIdentity() {
+        return guadianIdentity;
+    }
+
+    public void setGuadianIdentity(String guadianIdentity) {
+        this.guadianIdentity = guadianIdentity == null ? null : guadianIdentity.trim();
     }
 }

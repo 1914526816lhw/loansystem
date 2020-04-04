@@ -7,7 +7,7 @@ public class LoanLog {
 
     private String loanContactId;
 
-    private Integer loanUserId;
+    private String loanUserIdentity;
 
     private Double loanMoney;
 
@@ -31,12 +31,12 @@ public class LoanLog {
         this.loanContactId = loanContactId == null ? null : loanContactId.trim();
     }
 
-    public Integer getLoanUserId() {
-        return loanUserId;
+    public String getLoanUserIdentity() {
+        return loanUserIdentity;
     }
 
-    public void setLoanUserId(Integer loanUserId) {
-        this.loanUserId = loanUserId;
+    public void setLoanUserIdentity(String loanUserIdentity) {
+        this.loanUserIdentity = loanUserIdentity == null ? null : loanUserIdentity.trim();
     }
 
     public Double getLoanMoney() {

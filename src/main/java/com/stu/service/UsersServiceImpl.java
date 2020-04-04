@@ -76,6 +76,7 @@ public class UsersServiceImpl implements UsersService {
             }
         } catch (Exception e) {
             logger.info(e.getMessage());
+            jsonObject.put("status", 500);
         }
         return jsonObject;
     }
@@ -163,6 +164,8 @@ public class UsersServiceImpl implements UsersService {
         JSONObject jsonObject = new JSONObject();
         Users users = usersMapper.selectUserByIdentity(userIdentity);
         if (users != null) {
+            System.out.println(redisConfig.get("autoCode"));
+            System.out.println(userPhone);
             if (verifyCode.equals(redisConfig.get("autoCode"))) {
                 redisConfig.delete("autoCode");
                 try {
@@ -206,6 +209,30 @@ public class UsersServiceImpl implements UsersService {
             jsonObject.put("status", 500);
         }
         jsonObject.put("data", data);
+        return jsonObject;
+    }
+
+    /**
+     * MethodName: getUserName
+     * Description: 获取用户名
+     * @author lihw
+     * CreateTime 2020/4/1 17:32
+     * @param userIdentity
+     * @return jsonObject
+     */
+    @Override
+    public JSONObject getUserName(String userIdentity) {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject data = new JSONObject();
+        Users users = usersMapper.selectUserByIdentity(userIdentity);
+        if (users != null) {
+            jsonObject.put("status", 200);
+            data.put("userName", users.getUserName());
+            jsonObject.put("data", data);
+        } else {
+            jsonObject.put("status", 401);
+            jsonObject.put("data", null);
+        }
         return jsonObject;
     }
 }

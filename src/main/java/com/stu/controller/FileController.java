@@ -45,7 +45,8 @@ public class FileController {
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();
-        return new UploadFileResponse(fileName, fileDownLoadUri, file.getContentType(), file.getSize());
+        String fileLoadAddress =  ServletUriComponentsBuilder.fromCurrentContextPath().path(fileName).toUriString();
+        return new UploadFileResponse(fileName, fileDownLoadUri, file.getContentType(), file.getSize(),fileLoadAddress);
     }
 
 

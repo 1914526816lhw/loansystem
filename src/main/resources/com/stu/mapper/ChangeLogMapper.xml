@@ -3,10 +3,12 @@
 <mapper namespace="com.stu.mapper.ChangeLogMapper" >
   <resultMap id="BaseResultMap" type="com.stu.entity.ChangeLog" >
     <id column="change_reason_id" property="changeReasonId" jdbcType="INTEGER" />
+    <result column="user_identity" property="userIdentity" jdbcType="VARCHAR" />
+    <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR" />
     <result column="change_reason_content" property="changeReasonContent" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    change_reason_id, change_reason_content
+    change_reason_id, user_identity, guardian_identity, change_reason_content
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -19,16 +21,22 @@
     where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.stu.entity.ChangeLog" >
-    insert into changeLog (change_reason_id, change_reason_content
-      )
-    values (#{changeReasonId,jdbcType=INTEGER}, #{changeReasonContent,jdbcType=VARCHAR}
-      )
+    insert into changeLog (change_reason_id, user_identity, guardian_identity, 
+      change_reason_content)
+    values (#{changeReasonId,jdbcType=INTEGER}, #{userIdentity,jdbcType=VARCHAR}, #{guardianIdentity,jdbcType=VARCHAR}, 
+      #{changeReasonContent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.stu.entity.ChangeLog" >
     insert into changeLog
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="changeReasonId != null" >
         change_reason_id,
+      </if>
+      <if test="userIdentity != null" >
+        user_identity,
+      </if>
+      <if test="guardianIdentity != null" >
+        guardian_identity,
       </if>
       <if test="changeReasonContent != null" >
         change_reason_content,
@@ -38,6 +46,12 @@
       <if test="changeReasonId != null" >
         #{changeReasonId,jdbcType=INTEGER},
       </if>
+      <if test="userIdentity != null" >
+        #{userIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianIdentity != null" >
+        #{guardianIdentity,jdbcType=VARCHAR},
+      </if>
       <if test="changeReasonContent != null" >
         #{changeReasonContent,jdbcType=VARCHAR},
       </if>
@@ -46,6 +60,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.ChangeLog" >
     update changeLog
     <set >
+      <if test="userIdentity != null" >
+        user_identity = #{userIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianIdentity != null" >
+        guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},
+      </if>
       <if test="changeReasonContent != null" >
         change_reason_content = #{changeReasonContent,jdbcType=VARCHAR},
       </if>
@@ -54,7 +74,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.stu.entity.ChangeLog" >
     update changeLog
-    set change_reason_content = #{changeReasonContent,jdbcType=VARCHAR}
+    set user_identity = #{userIdentity,jdbcType=VARCHAR},
+      guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},
+      change_reason_content = #{changeReasonContent,jdbcType=VARCHAR}
     where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
   </update>
 </mapper>

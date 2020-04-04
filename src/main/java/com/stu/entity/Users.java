@@ -1,7 +1,5 @@
 package com.stu.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class Users {
@@ -19,17 +17,9 @@ public class Users {
 
     private String userSex;
 
+    private Integer userFamousRaceId;
+
     private String userMiddleSchool;
-
-    private String userFamousRace;
-
-    private Integer accountCharacterId;
-
-    private Integer fundingCenterId;
-
-    private String userPermanentAddress;
-
-    private String userMailAddress;
 
     private String userMailBox;
 
@@ -39,17 +29,11 @@ public class Users {
 
     private String userPostalAddress;
 
-    private String userFamilyAddress;
-
     private String userPostalCode;
 
     private String userFamilyPhone;
 
     private String userContactName;
-
-    private String contactWorkUnit;
-
-    private String userContactNumber;
 
     private String userContactPhone;
 
@@ -71,31 +55,25 @@ public class Users {
 
     private String userEducationalSystem;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date userGraduationTime;
 
-    private String userWorkUnit;
-
-    private String userUnitProperty;
-
-    private String userUnitPhone;
-
-    private String userUnitMailAddress;
-
-    private String userUnitAddress;
-
-    private Integer changeReasonId;
-
-    private String userIdphotoFront;
-
-    private String userIdphotoReverse;
-
-    private String userSchoolInfoPhoto;
+    private String userLoanType;
 
     private Integer loanId;
 
     private Integer guardianId;
-    private String userLoanType;
+
+    private Integer accountCharacterId;
+
+    private Integer fundingCenterId;
+
+    private String provenceId;
+
+    private String cityId;
+
+    private String areaId;
+
+    private String userPermanentAddress;
 
     public Integer getUserId() {
         return userId;
@@ -153,6 +131,14 @@ public class Users {
         this.userSex = userSex == null ? null : userSex.trim();
     }
 
+    public Integer getUserFamousRaceId() {
+        return userFamousRaceId;
+    }
+
+    public void setUserFamousRaceId(Integer userFamousRaceId) {
+        this.userFamousRaceId = userFamousRaceId;
+    }
+
     public String getUserMiddleSchool() {
         return userMiddleSchool;
     }
@@ -161,53 +147,6 @@ public class Users {
         this.userMiddleSchool = userMiddleSchool == null ? null : userMiddleSchool.trim();
     }
 
-    public String getUserFamousRace() {
-        return userFamousRace;
-    }
-
-    public void setUserFamousRace(String userFamousRace) {
-        this.userFamousRace = userFamousRace == null ? null : userFamousRace.trim();
-    }
-
-    public Integer getAccountCharacterId() {
-        return accountCharacterId;
-    }
-
-    public void setAccountCharacterId(Integer accountCharacterId) {
-        this.accountCharacterId = accountCharacterId;
-    }
-
-    public Integer getFundingCenterId() {
-        return fundingCenterId;
-    }
-
-    public void setFundingCenterId(Integer fundingCenterId) {
-        this.fundingCenterId = fundingCenterId;
-    }
-
-    public String getUserPermanentAddress() {
-        return userPermanentAddress;
-    }
-
-    public void setUserPermanentAddress(String userPermanentAddress) {
-        this.userPermanentAddress = userPermanentAddress == null ? null : userPermanentAddress.trim();
-    }
-
-    public String getUserMailAddress() {
-        return userMailAddress;
-    }
-
-    public void setUserMailAddress(String userMailAddress) {
-        this.userMailAddress = userMailAddress == null ? null : userMailAddress.trim();
-    }
-
-    public String getUserMailBox() {
-        return userMailBox;
-    }
-
-    public void setUserMailBox(String userMailBox) {
-        this.userMailBox = userMailBox == null ? null : userMailBox.trim();
-    }
 
     public String getUserQq() {
         return userQq;
@@ -225,21 +164,6 @@ public class Users {
         this.userWechat = userWechat == null ? null : userWechat.trim();
     }
 
-    public String getUserPostalAddress() {
-        return userPostalAddress;
-    }
-
-    public void setUserPostalAddress(String userPostalAddress) {
-        this.userPostalAddress = userPostalAddress == null ? null : userPostalAddress.trim();
-    }
-
-    public String getUserFamilyAddress() {
-        return userFamilyAddress;
-    }
-
-    public void setUserFamilyAddress(String userFamilyAddress) {
-        this.userFamilyAddress = userFamilyAddress == null ? null : userFamilyAddress.trim();
-    }
 
     public String getUserPostalCode() {
         return userPostalCode;
@@ -263,22 +187,6 @@ public class Users {
 
     public void setUserContactName(String userContactName) {
         this.userContactName = userContactName == null ? null : userContactName.trim();
-    }
-
-    public String getContactWorkUnit() {
-        return contactWorkUnit;
-    }
-
-    public void setContactWorkUnit(String contactWorkUnit) {
-        this.contactWorkUnit = contactWorkUnit == null ? null : contactWorkUnit.trim();
-    }
-
-    public String getUserContactNumber() {
-        return userContactNumber;
-    }
-
-    public void setUserContactNumber(String userContactNumber) {
-        this.userContactNumber = userContactNumber == null ? null : userContactNumber.trim();
     }
 
     public String getUserContactPhone() {
@@ -353,13 +261,6 @@ public class Users {
         this.userMajorCategory = userMajorCategory == null ? null : userMajorCategory.trim();
     }
 
-    public String getUserEducationalSystem() {
-        return userEducationalSystem;
-    }
-
-    public void setUserEducationalSystem(String userEducationalSystem) {
-        this.userEducationalSystem = userEducationalSystem == null ? null : userEducationalSystem.trim();
-    }
 
     public Date getUserGraduationTime() {
         return userGraduationTime;
@@ -369,76 +270,12 @@ public class Users {
         this.userGraduationTime = userGraduationTime;
     }
 
-    public String getUserWorkUnit() {
-        return userWorkUnit;
+    public String getUserLoanType() {
+        return userLoanType;
     }
 
-    public void setUserWorkUnit(String userWorkUnit) {
-        this.userWorkUnit = userWorkUnit == null ? null : userWorkUnit.trim();
-    }
-
-    public String getUserUnitProperty() {
-        return userUnitProperty;
-    }
-
-    public void setUserUnitProperty(String userUnitProperty) {
-        this.userUnitProperty = userUnitProperty == null ? null : userUnitProperty.trim();
-    }
-
-    public String getUserUnitPhone() {
-        return userUnitPhone;
-    }
-
-    public void setUserUnitPhone(String userUnitPhone) {
-        this.userUnitPhone = userUnitPhone == null ? null : userUnitPhone.trim();
-    }
-
-    public String getUserUnitMailAddress() {
-        return userUnitMailAddress;
-    }
-
-    public void setUserUnitMailAddress(String userUnitMailAddress) {
-        this.userUnitMailAddress = userUnitMailAddress == null ? null : userUnitMailAddress.trim();
-    }
-
-    public String getUserUnitAddress() {
-        return userUnitAddress;
-    }
-
-    public void setUserUnitAddress(String userUnitAddress) {
-        this.userUnitAddress = userUnitAddress == null ? null : userUnitAddress.trim();
-    }
-
-    public Integer getChangeReasonId() {
-        return changeReasonId;
-    }
-
-    public void setChangeReasonId(Integer changeReasonId) {
-        this.changeReasonId = changeReasonId;
-    }
-
-    public String getUserIdphotoFront() {
-        return userIdphotoFront;
-    }
-
-    public void setUserIdphotoFront(String userIdphotoFront) {
-        this.userIdphotoFront = userIdphotoFront == null ? null : userIdphotoFront.trim();
-    }
-
-    public String getUserIdphotoReverse() {
-        return userIdphotoReverse;
-    }
-
-    public void setUserIdphotoReverse(String userIdphotoReverse) {
-        this.userIdphotoReverse = userIdphotoReverse == null ? null : userIdphotoReverse.trim();
-    }
-
-    public String getUserSchoolInfoPhoto() {
-        return userSchoolInfoPhoto;
-    }
-
-    public void setUserSchoolInfoPhoto(String userSchoolInfoPhoto) {
-        this.userSchoolInfoPhoto = userSchoolInfoPhoto == null ? null : userSchoolInfoPhoto.trim();
+    public void setUserLoanType(String userLoanType) {
+        this.userLoanType = userLoanType == null ? null : userLoanType.trim();
     }
 
     public Integer getLoanId() {
@@ -457,11 +294,51 @@ public class Users {
         this.guardianId = guardianId;
     }
 
-    public String getUserLoanType() {
-        return userLoanType;
+    public Integer getAccountCharacterId() {
+        return accountCharacterId;
     }
 
-    public void setUserLoanType(String userLoanType) {
-        this.userLoanType = userLoanType;
+    public void setAccountCharacterId(Integer accountCharacterId) {
+        this.accountCharacterId = accountCharacterId;
+    }
+
+    public Integer getFundingCenterId() {
+        return fundingCenterId;
+    }
+
+    public void setFundingCenterId(Integer fundingCenterId) {
+        this.fundingCenterId = fundingCenterId;
+    }
+
+    public String getProvenceId() {
+        return provenceId;
+    }
+
+    public void setProvenceId(String provenceId) {
+        this.provenceId = provenceId == null ? null : provenceId.trim();
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId == null ? null : cityId.trim();
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId == null ? null : areaId.trim();
+    }
+
+    public String getUserPermanentAddress() {
+        return userPermanentAddress;
+    }
+
+    public void setUserPermanentAddress(String userPermanentAddress) {
+        this.userPermanentAddress = userPermanentAddress == null ? null : userPermanentAddress.trim();
     }
 }

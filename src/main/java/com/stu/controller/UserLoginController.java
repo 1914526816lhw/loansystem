@@ -61,9 +61,9 @@ public class UserLoginController {
      * MethodName: 验证结果
      * Description:成功则登录系统
      *
-     * @param
-     * @return
-     * @author lhw
+     * @param userPhone,verifyCode
+     * @return jsonObject
+     * @author lihw
      * CreateTime 2020/3/21 16:14
      */
     @PassToken

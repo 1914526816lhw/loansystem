@@ -79,11 +79,11 @@
 <!--			<property name="useActualColumnNames" value="false" />-->
 <!--		</table>-->
 
-<!--		<table tableName="guardian" domainObjectName="Guardian"-->
-<!--			   enableCountByExample="false" enableDeleteByExample="false"-->
-<!--			   enableSelectByExample="false" enableUpdateByExample="false">-->
-<!--			<property name="useActualColumnNames" value="false" />-->
-<!--		</table>-->
+		<table tableName="guardian" domainObjectName="Guardian"
+			   enableCountByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
 
 <!--		<table tableName="accountCharacter" domainObjectName="AccountCharacter"-->
 <!--			   enableCountByExample="false" enableDeleteByExample="false"-->
@@ -91,11 +91,11 @@
 <!--			<property name="useActualColumnNames" value="false" />-->
 <!--		</table>-->
 
-<!--		<table tableName="changeLog" domainObjectName="ChangeLog"-->
-<!--			   enableCountByExample="false" enableDeleteByExample="false"-->
-<!--			   enableSelectByExample="false" enableUpdateByExample="false">-->
-<!--			<property name="useActualColumnNames" value="false" />-->
-<!--		</table>-->
+		<table tableName="changeLog" domainObjectName="ChangeLog"
+			   enableCountByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
 
 <!--		<table tableName="fundingCenter" domainObjectName="FundingCenter"-->
 <!--			   enableCountByExample="false" enableDeleteByExample="false"-->
@@ -109,21 +109,21 @@
 <!--			<property name="useActualColumnNames" value="false" />-->
 <!--		</table>-->
 
-<!--		<table tableName="loanContract" domainObjectName="LoanContract"-->
-<!--			   enableCountByExample="false" enableDeleteByExample="false"-->
-<!--			   enableSelectByExample="false" enableUpdateByExample="false">-->
-<!--			<property name="useActualColumnNames" value="false" />-->
-<!--		</table>-->
-
-<!--		<table tableName="loanLog" domainObjectName="LoanLog"-->
-<!--			   enableCountByExample="false" enableDeleteByExample="false"-->
-<!--			   enableSelectByExample="false" enableUpdateByExample="false">-->
-<!--			<property name="useActualColumnNames" value="false" />-->
-<!--		</table>-->
-		<table tableName="famousRace" domainObjectName="FamousRace"
+		<table tableName="loanContract" domainObjectName="LoanContract"
 			   enableCountByExample="false" enableDeleteByExample="false"
 			   enableSelectByExample="false" enableUpdateByExample="false">
 			<property name="useActualColumnNames" value="false" />
 		</table>
+
+		<table tableName="loanLog" domainObjectName="LoanLog"
+			   enableCountByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+<!--		<table tableName="famousRace" domainObjectName="FamousRace"-->
+<!--			   enableCountByExample="false" enableDeleteByExample="false"-->
+<!--			   enableSelectByExample="false" enableUpdateByExample="false">-->
+<!--			<property name="useActualColumnNames" value="false" />-->
+<!--		</table>-->
 	</context>
 </generatorConfiguration>

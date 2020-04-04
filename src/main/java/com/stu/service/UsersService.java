@@ -23,4 +23,5 @@ public interface UsersService {
     JSONObject updateSecurityQuestion(String userIdentity,String userSecurityQuestion,String userSecurityAnswer);
     JSONObject updateUserPhone(String userIdentity,String userPhone,String verifyCode);
     JSONObject isFirstLoan(String userIdentity);
+    JSONObject getUserName(String userIdentity);
 }

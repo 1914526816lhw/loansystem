@@ -14,7 +14,7 @@ public class TokenService {
 
     public String getToken(UserLogin userLogin) {
         Date start = new Date();
-        long currentTime = System.currentTimeMillis() + 60 * 60*1000*24;//有效求一小时
+        long currentTime = System.currentTimeMillis() + 60 * 60*1000*24;//有效求一天
         Date end = new Date(currentTime);
         String token;
         token = JWT.create().withAudience(userLogin.getUserLoginAccount()).withIssuedAt(start).withExpiresAt(end)

@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.stu.entity.LoanLog" >
     <id column="loan_log_id" property="loanLogId" jdbcType="INTEGER" />
     <result column="loan_contact_id" property="loanContactId" jdbcType="VARCHAR" />
-    <result column="loan_user_id" property="loanUserId" jdbcType="INTEGER" />
+    <result column="loan_user_identity" property="loanUserIdentity" jdbcType="VARCHAR" />
     <result column="loan_money" property="loanMoney" jdbcType="DOUBLE" />
     <result column="loan_type" property="loanType" jdbcType="VARCHAR" />
     <result column="loan_log_date" property="loanLogDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    loan_log_id, loan_contact_id, loan_user_id, loan_money, loan_type, loan_log_date
+    loan_log_id, loan_contact_id, loan_user_identity, loan_money, loan_type, loan_log_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,10 +23,10 @@
     where loan_log_id = #{loanLogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.stu.entity.LoanLog" >
-    insert into loanLog (loan_log_id, loan_contact_id, loan_user_id, 
+    insert into loanLog (loan_log_id, loan_contact_id, loan_user_identity, 
       loan_money, loan_type, loan_log_date
       )
-    values (#{loanLogId,jdbcType=INTEGER}, #{loanContactId,jdbcType=VARCHAR}, #{loanUserId,jdbcType=INTEGER}, 
+    values (#{loanLogId,jdbcType=INTEGER}, #{loanContactId,jdbcType=VARCHAR}, #{loanUserIdentity,jdbcType=VARCHAR}, 
       #{loanMoney,jdbcType=DOUBLE}, #{loanType,jdbcType=VARCHAR}, #{loanLogDate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -39,8 +39,8 @@
       <if test="loanContactId != null" >
         loan_contact_id,
       </if>
-      <if test="loanUserId != null" >
-        loan_user_id,
+      <if test="loanUserIdentity != null" >
+        loan_user_identity,
       </if>
       <if test="loanMoney != null" >
         loan_money,
@@ -59,8 +59,8 @@
       <if test="loanContactId != null" >
         #{loanContactId,jdbcType=VARCHAR},
       </if>
-      <if test="loanUserId != null" >
-        #{loanUserId,jdbcType=INTEGER},
+      <if test="loanUserIdentity != null" >
+        #{loanUserIdentity,jdbcType=VARCHAR},
       </if>
       <if test="loanMoney != null" >
         #{loanMoney,jdbcType=DOUBLE},
@@ -79,8 +79,8 @@
       <if test="loanContactId != null" >
         loan_contact_id = #{loanContactId,jdbcType=VARCHAR},
       </if>
-      <if test="loanUserId != null" >
-        loan_user_id = #{loanUserId,jdbcType=INTEGER},
+      <if test="loanUserIdentity != null" >
+        loan_user_identity = #{loanUserIdentity,jdbcType=VARCHAR},
       </if>
       <if test="loanMoney != null" >
         loan_money = #{loanMoney,jdbcType=DOUBLE},
@@ -97,7 +97,7 @@
   <update id="updateByPrimaryKey" parameterType="com.stu.entity.LoanLog" >
     update loanLog
     set loan_contact_id = #{loanContactId,jdbcType=VARCHAR},
-      loan_user_id = #{loanUserId,jdbcType=INTEGER},
+      loan_user_identity = #{loanUserIdentity,jdbcType=VARCHAR},
       loan_money = #{loanMoney,jdbcType=DOUBLE},
       loan_type = #{loanType,jdbcType=VARCHAR},
       loan_log_date = #{loanLogDate,jdbcType=TIMESTAMP}

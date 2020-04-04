@@ -6,12 +6,13 @@
     <result column="contract_id" property="contractId" jdbcType="VARCHAR" />
     <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
     <result column="loan_money" property="loanMoney" jdbcType="DOUBLE" />
-    <result column="loan_date" property="loanDate" jdbcType="DATE" />
-    <result column="repayment_date" property="repaymentDate" jdbcType="VARCHAR" />
+    <result column="loan_date" property="loanDate" jdbcType="TIMESTAMP" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="TIMESTAMP" />
+    <result column="user_identity" property="userIdentity" jdbcType="VARCHAR" />
+    <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    loan_id, contract_id, loan_name, loan_money, loan_date, 
-repayment_date
+    loan_id, contract_id, loan_name, loan_money, loan_date, repayment_date, user_identity, guardian_identity
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -25,13 +26,11 @@ repayment_date
   </delete>
   <insert id="insert" parameterType="com.stu.entity.LoanContract" >
     insert into loanContract (loan_id, contract_id, loan_name, 
-      loan_money, loan_date, 
-repayment_date
-      )
+      loan_money, loan_date, repayment_date,
+      user_identity, guardian_identity)
     values (#{loanId,jdbcType=INTEGER}, #{contractId,jdbcType=VARCHAR}, #{loanName,jdbcType=VARCHAR}, 
-      #{loanMoney,jdbcType=DOUBLE}, #{loanDate,jdbcType=DATE}, #{
-repaymentDate,jdbcType=VARCHAR}
-      )
+      #{loanMoney,jdbcType=DOUBLE}, #{loanDate,jdbcType=TIMESTAMP}, #{repaymentDate,jdbcType=TIMESTAMP},
+      #{userIdentity,jdbcType=VARCHAR}, #{guardianIdentity,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.stu.entity.LoanContract" >
     insert into loanContract
@@ -51,10 +50,14 @@ repaymentDate,jdbcType=VARCHAR}
       <if test="loanDate != null" >
         loan_date,
       </if>
-      <if test="
-repaymentDate != null" >
-        
-repayment_date,
+      <if test="repaymentDate != null" >
+        repayment_date,
+      </if>
+      <if test="userIdentity != null" >
+        user_identity,
+      </if>
+      <if test="guardianIdentity != null" >
+        guardian_identity,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -71,12 +74,16 @@ repayment_date,
         #{loanMoney,jdbcType=DOUBLE},
       </if>
       <if test="loanDate != null" >
-        #{loanDate,jdbcType=DATE},
+        #{loanDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="
-repaymentDate != null" >
-        #{
-repaymentDate,jdbcType=VARCHAR},
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIdentity != null" >
+        #{userIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianIdentity != null" >
+        #{guardianIdentity,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -93,13 +100,16 @@ repaymentDate,jdbcType=VARCHAR},
         loan_money = #{loanMoney,jdbcType=DOUBLE},
       </if>
       <if test="loanDate != null" >
-        loan_date = #{loanDate,jdbcType=DATE},
+        loan_date = #{loanDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="
-repaymentDate != null" >
-        
-repayment_date = #{
-repaymentDate,jdbcType=VARCHAR},
+      <if test="repaymentDate != null" >
+        repayment_date = #{repaymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIdentity != null" >
+        user_identity = #{userIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianIdentity != null" >
+        guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},
       </if>
     </set>
     where loan_id = #{loanId,jdbcType=INTEGER}
@@ -109,10 +119,10 @@ repaymentDate,jdbcType=VARCHAR},
     set contract_id = #{contractId,jdbcType=VARCHAR},
       loan_name = #{loanName,jdbcType=VARCHAR},
       loan_money = #{loanMoney,jdbcType=DOUBLE},
-      loan_date = #{loanDate,jdbcType=DATE},
-      
-repayment_date = #{
-repaymentDate,jdbcType=VARCHAR}
+      loan_date = #{loanDate,jdbcType=TIMESTAMP},
+      repayment_date = #{repaymentDate,jdbcType=TIMESTAMP},
+      user_identity = #{userIdentity,jdbcType=VARCHAR},
+      guardian_identity = #{guardianIdentity,jdbcType=VARCHAR}
     where loan_id = #{loanId,jdbcType=INTEGER}
   </update>
 </mapper>
