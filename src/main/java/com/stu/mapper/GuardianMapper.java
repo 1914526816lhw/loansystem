@@ -1,17 +1,11 @@
 package com.stu.mapper;
 
 import com.stu.entity.Guardian;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GuardianMapper {
-    int deleteByPrimaryKey(Integer guardianId);
-
-    int insert(Guardian record);
-
-    int insertSelective(Guardian record);
-
-    Guardian selectByPrimaryKey(Integer guardianId);
-
-    int updateByPrimaryKeySelective(Guardian record);
-
-    int updateByPrimaryKey(Guardian record);
+    Guardian selectByUserIdentity(String userIdentity);
+    int insert(Guardian guardian) throws Exception;
+    int updateGuardian(Guardian guardian) throws Exception;
 }

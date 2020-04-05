@@ -24,4 +24,6 @@ public interface UsersMapper {
     Users selectUserByIdentity(String userIdentity);
     int updateSecurityQuestion(String userIdentity, String userSecurityQuestion, String userSecurityAnswer);
     int updateUserPhone(String userIdentity, String userPhone);
+    int improveUserInfo(Users users) throws Exception;
+    int updateUserByIdentity(Users users) throws Exception;
 }

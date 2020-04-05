@@ -17,6 +17,8 @@ public class Users {
 
     private String userSex;
 
+    private Date userBirthday;
+
     private Integer userFamousRaceId;
 
     private String userMiddleSchool;
@@ -47,7 +49,7 @@ public class Users {
 
     private String userEducation;
 
-    private String userEnrollmentYear;
+    private Integer userEnrollmentYear;
 
     private String userStudentId;
 
@@ -59,21 +61,23 @@ public class Users {
 
     private String userLoanType;
 
-    private Integer loanId;
-
     private Integer guardianId;
+
+    private String relation;
 
     private Integer accountCharacterId;
 
     private Integer fundingCenterId;
 
-    private String provenceId;
+    private String provinceId;
 
     private String cityId;
 
     private String areaId;
 
     private String userPermanentAddress;
+
+
 
     public Integer getUserId() {
         return userId;
@@ -237,12 +241,12 @@ public class Users {
         this.userEducation = userEducation == null ? null : userEducation.trim();
     }
 
-    public String getUserEnrollmentYear() {
+    public Integer getUserEnrollmentYear() {
         return userEnrollmentYear;
     }
 
-    public void setUserEnrollmentYear(String userEnrollmentYear) {
-        this.userEnrollmentYear = userEnrollmentYear == null ? null : userEnrollmentYear.trim();
+    public void setUserEnrollmentYear(Integer userEnrollmentYear) {
+        this.userEnrollmentYear = userEnrollmentYear ;
     }
 
     public String getUserStudentId() {
@@ -278,14 +282,6 @@ public class Users {
         this.userLoanType = userLoanType == null ? null : userLoanType.trim();
     }
 
-    public Integer getLoanId() {
-        return loanId;
-    }
-
-    public void setLoanId(Integer loanId) {
-        this.loanId = loanId;
-    }
-
     public Integer getGuardianId() {
         return guardianId;
     }
@@ -310,12 +306,12 @@ public class Users {
         this.fundingCenterId = fundingCenterId;
     }
 
-    public String getProvenceId() {
-        return provenceId;
+    public String getProvinceId() {
+        return provinceId;
     }
 
-    public void setProvenceId(String provenceId) {
-        this.provenceId = provenceId == null ? null : provenceId.trim();
+    public void setProvinceId(String provinceId) {
+        this.provinceId = provinceId == null ? null : provinceId.trim();
     }
 
     public String getCityId() {
@@ -340,5 +336,45 @@ public class Users {
 
     public void setUserPermanentAddress(String userPermanentAddress) {
         this.userPermanentAddress = userPermanentAddress == null ? null : userPermanentAddress.trim();
+    }
+
+    public String getUserMailBox() {
+        return userMailBox;
+    }
+
+    public void setUserMailBox(String userMailBox) {
+        this.userMailBox = userMailBox;
+    }
+
+    public String getUserPostalAddress() {
+        return userPostalAddress;
+    }
+
+    public void setUserPostalAddress(String userPostalAddress) {
+        this.userPostalAddress = userPostalAddress;
+    }
+
+    public String getUserEducationalSystem() {
+        return userEducationalSystem;
+    }
+
+    public void setUserEducationalSystem(String userEducationalSystem) {
+        this.userEducationalSystem = userEducationalSystem;
+    }
+
+    public Date getUserBirthday() {
+        return userBirthday;
+    }
+
+    public void setUserBirthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
     }
 }

@@ -7,17 +7,19 @@ public class Guardian {
 
     private String guardianIdentity;
 
-    private String guardianAddress;
-
-    private String guardianFamilyAddress;
-
     private String guardianPostalCode;
-
-    private String guardianFamilyPhone;
 
     private String guardianHealth;
 
     private String guardianTel;
+
+    private String provinceId;
+
+    private String cityId;
+
+    private String areaId;
+
+    private String guardianPermanentAddress;
 
     public Integer getGuardianId() {
         return guardianId;
@@ -43,36 +45,12 @@ public class Guardian {
         this.guardianIdentity = guardianIdentity == null ? null : guardianIdentity.trim();
     }
 
-    public String getGuardianAddress() {
-        return guardianAddress;
-    }
-
-    public void setGuardianAddress(String guardianAddress) {
-        this.guardianAddress = guardianAddress == null ? null : guardianAddress.trim();
-    }
-
-    public String getGuardianFamilyAddress() {
-        return guardianFamilyAddress;
-    }
-
-    public void setGuardianFamilyAddress(String guardianFamilyAddress) {
-        this.guardianFamilyAddress = guardianFamilyAddress == null ? null : guardianFamilyAddress.trim();
-    }
-
     public String getGuardianPostalCode() {
         return guardianPostalCode;
     }
 
     public void setGuardianPostalCode(String guardianPostalCode) {
         this.guardianPostalCode = guardianPostalCode == null ? null : guardianPostalCode.trim();
-    }
-
-    public String getGuardianFamilyPhone() {
-        return guardianFamilyPhone;
-    }
-
-    public void setGuardianFamilyPhone(String guardianFamilyPhone) {
-        this.guardianFamilyPhone = guardianFamilyPhone == null ? null : guardianFamilyPhone.trim();
     }
 
     public String getGuardianHealth() {
@@ -89,5 +67,37 @@ public class Guardian {
 
     public void setGuardianTel(String guardianTel) {
         this.guardianTel = guardianTel == null ? null : guardianTel.trim();
+    }
+
+    public String getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(String provinceId) {
+        this.provinceId = provinceId == null ? null : provinceId.trim();
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId == null ? null : cityId.trim();
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId == null ? null : areaId.trim();
+    }
+
+    public String getGuardianPermanentAddress() {
+        return guardianPermanentAddress;
+    }
+
+    public void setGuardianPermanentAddress(String guardianPermanentAddress) {
+        this.guardianPermanentAddress = guardianPermanentAddress == null ? null : guardianPermanentAddress.trim();
     }
 }

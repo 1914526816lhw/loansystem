@@ -20,58 +20,10 @@
     delete from changeLog
     where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.stu.entity.ChangeLog" >
-    insert into changeLog (change_reason_id, user_identity, guardian_identity, 
-      change_reason_content)
-    values (#{changeReasonId,jdbcType=INTEGER}, #{userIdentity,jdbcType=VARCHAR}, #{guardianIdentity,jdbcType=VARCHAR}, 
-      #{changeReasonContent,jdbcType=VARCHAR})
+  <insert id="insertUserChangeReason" parameterType="com.stu.entity.ChangeLog" >
+    insert into changeLog (user_identity, guardian_identity, change_reason_content)
+    values (#{userIdentity,jdbcType=VARCHAR},#{guardianIdentity,jdbcType=VARCHAR},#{changeReasonContent,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.stu.entity.ChangeLog" >
-    insert into changeLog
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="changeReasonId != null" >
-        change_reason_id,
-      </if>
-      <if test="userIdentity != null" >
-        user_identity,
-      </if>
-      <if test="guardianIdentity != null" >
-        guardian_identity,
-      </if>
-      <if test="changeReasonContent != null" >
-        change_reason_content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="changeReasonId != null" >
-        #{changeReasonId,jdbcType=INTEGER},
-      </if>
-      <if test="userIdentity != null" >
-        #{userIdentity,jdbcType=VARCHAR},
-      </if>
-      <if test="guardianIdentity != null" >
-        #{guardianIdentity,jdbcType=VARCHAR},
-      </if>
-      <if test="changeReasonContent != null" >
-        #{changeReasonContent,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.ChangeLog" >
-    update changeLog
-    <set >
-      <if test="userIdentity != null" >
-        user_identity = #{userIdentity,jdbcType=VARCHAR},
-      </if>
-      <if test="guardianIdentity != null" >
-        guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},
-      </if>
-      <if test="changeReasonContent != null" >
-        change_reason_content = #{changeReasonContent,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
-  </update>
   <update id="updateByPrimaryKey" parameterType="com.stu.entity.ChangeLog" >
     update changeLog
     set user_identity = #{userIdentity,jdbcType=VARCHAR},

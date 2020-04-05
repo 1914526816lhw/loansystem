@@ -134,6 +134,11 @@
             <version>5.2.0</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.itextpdf</groupId>-->
+<!--            <artifactId>itextpdf</artifactId>-->
+<!--            <version>5.4.3</version>-->
+<!--        </dependency>-->
         <!--aliyun电脑网站支付-->
         <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
         <dependency>

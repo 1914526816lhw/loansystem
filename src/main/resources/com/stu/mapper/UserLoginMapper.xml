@@ -18,12 +18,6 @@
     where user_login_account = #{userLoginAccount,jdbcType=VARCHAR}
   </select>
 
-
-
-
-
-
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from userLogin
     where user_login_id = #{userLoginId,jdbcType=INTEGER}

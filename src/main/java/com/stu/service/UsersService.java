@@ -1,6 +1,8 @@
 package com.stu.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.stu.entity.Guardian;
+import com.stu.entity.Users;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,4 +26,7 @@ public interface UsersService {
     JSONObject updateUserPhone(String userIdentity,String userPhone,String verifyCode);
     JSONObject isFirstLoan(String userIdentity);
     JSONObject getUserName(String userIdentity);
+    JSONObject improveUserInfo(Guardian guardian, Users users);
+    JSONObject getUserInfo(String userIdentity);
+    JSONObject updateUser(Users users,String changeReason);
 }

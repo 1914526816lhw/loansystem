@@ -3,10 +3,15 @@ package com.stu.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.annotation.PassToken;
 import com.stu.annotation.UserLoginToken;
+import com.stu.entity.Guardian;
+import com.stu.entity.Users;
+import com.stu.service.GuardianService;
 import com.stu.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 
 /**
@@ -24,8 +29,7 @@ public class UsersController {
 
 
     @Autowired
-    UsersService usersService;
-
+    private UsersService usersService;
 
     /**
      * MethodName: register
@@ -76,10 +80,11 @@ public class UsersController {
     /**
      * MethodName: selectSecurityByIdentity
      * Description: 通过用户身份证号查找密保问题
-     * @author lihw
-     * CreateTime 2020/3/25 16:13
+     *
      * @param userIdentity
      * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/3/25 16:13
      */
     @PassToken
     @RequestMapping("/selectSecurityByIdentity")
@@ -90,40 +95,170 @@ public class UsersController {
     /**
      * MethodName: updateSecurityQuestion
      * Description: 修改密保问题
-     * @author lihw
-     * CreateTime 2020/4/1 17:34
+     *
      * @param userLoginAccount,userSecurityQuestion,userSecurityAnswer
      * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/4/1 17:34
      */
     @UserLoginToken
     @RequestMapping("/updateSecurityQuestion")
-    public JSONObject updateSecurityQuestion(String userLoginAccount,String userSecurityQuestion,String userSecurityAnswer){
-        return usersService.updateSecurityQuestion(userLoginAccount,userSecurityQuestion,userSecurityAnswer);
+    public JSONObject updateSecurityQuestion(String userLoginAccount, String userSecurityQuestion, String userSecurityAnswer) {
+        return usersService.updateSecurityQuestion(userLoginAccount, userSecurityQuestion, userSecurityAnswer);
     }
 
     @UserLoginToken
     @RequestMapping("/updateUserPhone")
-    public JSONObject updateUserPhone(String userLoginAccount,String newPhone,String verifyCode){
-        return usersService.updateUserPhone(userLoginAccount,newPhone,verifyCode);
+    public JSONObject updateUserPhone(String userLoginAccount, String newPhone, String verifyCode) {
+        return usersService.updateUserPhone(userLoginAccount, newPhone, verifyCode);
     }
 
     @UserLoginToken
     @RequestMapping("/isFirstLoan")
-    public JSONObject isFirstLoan(String userLoginAccount){
+    public JSONObject isFirstLoan(String userLoginAccount) {
         return usersService.isFirstLoan(userLoginAccount);
     }
 
     /**
      * MethodName: getUserName
      * Description: 获取用户名
-     * @author lihw
-     * CreateTime 2020/4/1 17:35
+     *
      * @param userLoginAccount
      * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/4/1 17:35
      */
     @UserLoginToken
     @RequestMapping("/getUserName")
-    public JSONObject getUserName(String userLoginAccount){
+    public JSONObject getUserName(String userLoginAccount) {
         return usersService.getUserName(userLoginAccount);
+    }
+
+
+    @UserLoginToken
+    @RequestMapping("/improveUserInfo")
+    public JSONObject improveUserInfo(
+            String userLoginAccount, String userSex,Date userBirthday, int userFamousRaceId, String userMiddleSchool,
+            int accountCharacterId, int fundingCenterId, String provinceId, String cityId, String areaId,
+            String userPermanentAddress, String userPostalCode, String userMailBox, String userQq, String userWeChat,
+            String userPostalAddress, String userFamilyPhone, String userContactName, String userContactPhone,
+            String userContactIdentity, String userUniversity, String userDepartment, String userMajor,
+            String userEducation, int userEnrollmentYear, String userStudentId, String userMajorCategory,
+            String userEducationalSystem, Date userGraduationTime,String relation,
+            String guardianName, String guardianIdentity, String guardianProvinceId, String guardianCityId, String guardianAreaId, String guardianPermanentAddress,
+            String guardianPostalCode, String guardianHealth, String guardianTel) {
+        //添加共同贷款人
+        Guardian guardian = new Guardian();
+        guardian.setGuardianName(guardianName);
+        guardian.setGuardianIdentity(guardianIdentity);
+        guardian.setProvinceId(guardianProvinceId);
+        guardian.setCityId(guardianCityId);
+        guardian.setAreaId(guardianAreaId);
+        guardian.setGuardianPermanentAddress(guardianPermanentAddress);
+        guardian.setGuardianPostalCode(guardianPostalCode);
+        guardian.setGuardianHealth(guardianHealth);
+        guardian.setGuardianTel(guardianTel);
+
+
+        Users user = new Users();
+        user.setUserIdentity(userLoginAccount);
+        user.setUserSex(userSex);
+        user.setUserBirthday(userBirthday);
+        user.setUserFamousRaceId(userFamousRaceId);
+        user.setUserMiddleSchool(userMiddleSchool);
+        user.setAccountCharacterId(accountCharacterId);
+        user.setFundingCenterId(fundingCenterId);
+        user.setProvinceId(provinceId);
+        user.setCityId(cityId);
+        user.setAreaId(areaId);
+        user.setUserPermanentAddress(userPermanentAddress);
+        user.setUserPostalCode(userPostalCode);
+        user.setUserMailBox(userMailBox);
+        user.setUserQq(userQq);
+        user.setUserWechat(userWeChat);
+        user.setUserPostalAddress(userPostalAddress);
+        user.setUserFamilyPhone(userFamilyPhone);
+        user.setUserContactName(userContactName);
+        user.setUserContactIdentity(userContactIdentity);
+        user.setUserContactPhone(userContactPhone);
+        user.setUserUniversity(userUniversity);
+        user.setUserDepartment(userDepartment);
+        user.setUserMajor(userMajor);
+        user.setUserEducation(userEducation);
+        user.setUserEnrollmentYear(userEnrollmentYear);
+        user.setUserStudentId(userStudentId);
+        user.setUserMajorCategory(userMajorCategory);
+        user.setUserEducationalSystem(userEducationalSystem);
+        user.setUserGraduationTime(userGraduationTime);
+        user.setRelation(relation);
+        return usersService.improveUserInfo(guardian, user);
+    }
+
+    /**
+     * MethodName: getUserInfo
+     * Description: 根据用户账号获取用户信息
+     *
+     * @param userLoginAccount
+     * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/4/4 16:51
+     */
+    @UserLoginToken
+    @RequestMapping("/getUserInfo")
+    public JSONObject getUserInfo(String userLoginAccount) {
+        return usersService.getUserInfo(userLoginAccount);
+    }
+
+
+    /**
+     * MethodName: updateUser
+     * Description: 修改用户信息
+     * @author lihw
+     * CreateTime 2020/4/4 17:25
+     * @param
+     * @return jsonObject
+     */
+    @UserLoginToken
+    @RequestMapping("/updateUser")
+    public JSONObject updateUser(
+            String userName,String userLoginAccount, String userSex,Date userBirthday, int userFamousRaceId, String userMiddleSchool,
+            int accountCharacterId, int fundingCenterId, String provinceId, String cityId, String areaId,
+            String userPermanentAddress, String userPostalCode, String userMailBox, String userQq, String userWeChat,
+            String userPostalAddress, String userFamilyPhone, String userContactName, String userContactPhone,
+            String userContactIdentity, String userUniversity, String userDepartment, String userMajor,
+            String userEducation, int userEnrollmentYear, String userStudentId, String userMajorCategory,
+            String userEducationalSystem, Date userGraduationTime,String changeReason){
+        Users user = new Users();
+        user.setUserName(userName);
+        user.setUserIdentity(userLoginAccount);
+        user.setUserSex(userSex);
+        user.setUserBirthday(userBirthday);
+        user.setUserFamousRaceId(userFamousRaceId);
+        user.setUserMiddleSchool(userMiddleSchool);
+        user.setAccountCharacterId(accountCharacterId);
+        user.setFundingCenterId(fundingCenterId);
+        user.setProvinceId(provinceId);
+        user.setCityId(cityId);
+        user.setAreaId(areaId);
+        user.setUserPermanentAddress(userPermanentAddress);
+        user.setUserPostalCode(userPostalCode);
+        user.setUserMailBox(userMailBox);
+        user.setUserQq(userQq);
+        user.setUserWechat(userWeChat);
+        user.setUserPostalAddress(userPostalAddress);
+        user.setUserFamilyPhone(userFamilyPhone);
+        user.setUserContactName(userContactName);
+        user.setUserContactIdentity(userContactIdentity);
+        user.setUserContactPhone(userContactPhone);
+        user.setUserUniversity(userUniversity);
+        user.setUserDepartment(userDepartment);
+        user.setUserMajor(userMajor);
+        user.setUserEducation(userEducation);
+        user.setUserEnrollmentYear(userEnrollmentYear);
+        user.setUserStudentId(userStudentId);
+        user.setUserMajorCategory(userMajorCategory);
+        user.setUserEducationalSystem(userEducationalSystem);
+        user.setUserGraduationTime(userGraduationTime);
+        return usersService.updateUser(user,changeReason);
     }
 }

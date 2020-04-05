@@ -7,7 +7,7 @@ public class FundingCenter {
 
     private String fundingCenterAddress;
 
-    private String fundingcenterPhone;
+    private String fundingCenterPhone;
 
     public Integer getFundingCenterId() {
         return fundingCenterId;
@@ -33,11 +33,11 @@ public class FundingCenter {
         this.fundingCenterAddress = fundingCenterAddress == null ? null : fundingCenterAddress.trim();
     }
 
-    public String getFundingcenterPhone() {
-        return fundingcenterPhone;
+    public String getFundingCenterPhone() {
+        return fundingCenterPhone;
     }
 
-    public void setFundingcenterPhone(String fundingcenterPhone) {
-        this.fundingcenterPhone = fundingcenterPhone == null ? null : fundingcenterPhone.trim();
+    public void setFundingCenterPhone(String fundingCenterPhone) {
+        this.fundingCenterPhone = fundingCenterPhone == null ? null : fundingCenterPhone.trim();
     }
 }

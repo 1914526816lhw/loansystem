@@ -3,8 +3,12 @@ package com.stu.service;
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.config.RedisConfig;
+import com.stu.entity.ChangeLog;
+import com.stu.entity.Guardian;
 import com.stu.entity.UserLogin;
 import com.stu.entity.Users;
+import com.stu.mapper.ChangeLogMapper;
+import com.stu.mapper.GuardianMapper;
 import com.stu.mapper.UserLoginMapper;
 import com.stu.mapper.UsersMapper;
 import com.stu.util.enAndDeCription.Md5Util;
@@ -38,6 +42,10 @@ public class UsersServiceImpl implements UsersService {
     private TokenService tokenService;
     @Autowired
     private RedisConfig redisConfig;
+    @Autowired
+    private GuardianMapper guardianMapper;
+    @Autowired
+    private ChangeLogMapper changeLogMapper;
 
     /**
      * MethodName: 用户注册
@@ -232,6 +240,66 @@ public class UsersServiceImpl implements UsersService {
         } else {
             jsonObject.put("status", 401);
             jsonObject.put("data", null);
+        }
+        return jsonObject;
+    }
+
+    /**
+     * MethodName: improveUserInfo
+     * Description: 完善用户信息
+     * @author lihw
+     * CreateTime 2020/4/4 16:34
+     * @param guardian,user
+     * @return jsonObject
+     */
+    @Override
+    public JSONObject improveUserInfo(Guardian guardian, Users user) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            if(guardianMapper.insert(guardian)==1){
+                user.setGuardianId(guardian.getGuardianId());
+
+                //完善用户信息
+                if(usersMapper.improveUserInfo(user)==1){
+                    jsonObject.put("status",201);
+                }
+            }
+        } catch (Exception e) {
+            jsonObject.put("status",401);
+        }
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getUserInfo(String userIdentity) {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject data = new JSONObject();
+        Users user = usersMapper.selectUserByIdentity(userIdentity);
+        if(user!=null){
+            jsonObject.put("status",200);
+            data.put("user",user);
+            jsonObject.put("data",data);
+        }else {
+            jsonObject.put("data",null);
+        }
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject updateUser(Users users,String changeReason) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            if(usersMapper.updateUserByIdentity(users)==1){
+                ChangeLog changeLog = new ChangeLog();
+                changeLog.setUserIdentity(users.getUserIdentity());
+                changeLog.setGuardianIdentity(null);
+                changeLog.setChangeReasonContent(changeReason);
+                if(changeLogMapper.insertUserChangeReason(changeLog) == 1){
+                    jsonObject.put("status",200);
+                }
+            }
+        } catch (Exception e) {
+            jsonObject.put("status",401);
         }
         return jsonObject;
     }

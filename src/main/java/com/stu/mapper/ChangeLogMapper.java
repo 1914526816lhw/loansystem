@@ -1,17 +1,9 @@
 package com.stu.mapper;
 
 import com.stu.entity.ChangeLog;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ChangeLogMapper {
-    int deleteByPrimaryKey(Integer changeReasonId);
-
-    int insert(ChangeLog record);
-
-    int insertSelective(ChangeLog record);
-
-    ChangeLog selectByPrimaryKey(Integer changeReasonId);
-
-    int updateByPrimaryKeySelective(ChangeLog record);
-
-    int updateByPrimaryKey(ChangeLog record);
+    int insertUserChangeReason(ChangeLog changeLog) throws Exception;
 }
