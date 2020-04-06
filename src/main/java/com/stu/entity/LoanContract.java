@@ -13,11 +13,17 @@ public class LoanContract {
 
     private Date loanDate;
 
+    private int loanTerm;
+
     private Date repaymentDate;
+
+    private String loanReason;
+
+    private String loanStatement;
 
     private String userIdentity;
 
-    private String guadianIdentity;
+    private String guardianIdentity;
 
     public Integer getLoanId() {
         return loanId;
@@ -75,11 +81,35 @@ public class LoanContract {
         this.userIdentity = userIdentity == null ? null : userIdentity.trim();
     }
 
-    public String getGuadianIdentity() {
-        return guadianIdentity;
+    public String getGuardianIdentity() {
+        return guardianIdentity;
     }
 
-    public void setGuadianIdentity(String guadianIdentity) {
-        this.guadianIdentity = guadianIdentity == null ? null : guadianIdentity.trim();
+    public void setGuardianIdentity(String guardianIdentity) {
+        this.guardianIdentity = guardianIdentity;
+    }
+
+    public String getLoanReason() {
+        return loanReason;
+    }
+
+    public void setLoanReason(String loanReason) {
+        this.loanReason = loanReason;
+    }
+
+    public String getLoanStatement() {
+        return loanStatement;
+    }
+
+    public void setLoanStatement(String loanStatement) {
+        this.loanStatement = loanStatement;
+    }
+
+    public int getLoanTerm() {
+        return loanTerm;
+    }
+
+    public void setLoanTerm(int loanTerm) {
+        this.loanTerm = loanTerm;
     }
 }

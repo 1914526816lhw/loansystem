@@ -1,17 +1,10 @@
 package com.stu.mapper;
 
 import com.stu.entity.LoanContract;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface LoanContractMapper {
-    int deleteByPrimaryKey(Integer loanId);
-
-    int insert(LoanContract record);
-
-    int insertSelective(LoanContract record);
-
-    LoanContract selectByPrimaryKey(Integer loanId);
-
-    int updateByPrimaryKeySelective(LoanContract record);
-
-    int updateByPrimaryKey(LoanContract record);
+    int insert(LoanContract loanContract) throws Exception;
+    LoanContract selectLoanContractByUserIdentity(String contractId);
 }

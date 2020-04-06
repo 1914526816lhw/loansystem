@@ -1,60 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.stu.mapper.UsersMapper">
-    <resultMap id="BaseResultMap" type="com.stu.entity.Users">
-        <id column="user_id" jdbcType="INTEGER" property="userId"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
-        <result column="user_identity" jdbcType="VARCHAR" property="userIdentity"/>
-        <result column="user_security_question" jdbcType="VARCHAR" property="userSecurityQuestion"/>
-        <result column="user_security_answer" jdbcType="VARCHAR" property="userSecurityAnswer"/>
-        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
-        <result column="user_sex" jdbcType="VARCHAR" property="userSex"/>
-        <result column="user_birthday" jdbcType="DATE" property="userBirthday"/>
-        <result column="user_famous_race_id" jdbcType="INTEGER" property="userFamousRaceId"/>
-        <result column="user_middle_school" jdbcType="VARCHAR" property="userMiddleSchool"/>
-        <result column="user_mail_box" jdbcType="VARCHAR" property=" userMailBox"/>
-        <result column="user_qq" jdbcType="VARCHAR" property="userQq"/>
-        <result column="user_weChat" jdbcType="VARCHAR" property="userWechat"/>
-        <result column="user_postal_address" jdbcType="VARCHAR" property=" userPostalAddress"/>
-        <result column="user_postal_code" jdbcType="VARCHAR" property="userPostalCode"/>
-        <result column="user_family_phone" jdbcType="VARCHAR" property="userFamilyPhone"/>
-        <result column="user_contact_name" jdbcType="VARCHAR" property="userContactName"/>
-        <result column="user_contact_phone" jdbcType="VARCHAR" property="userContactPhone"/>
-        <result column="user_contact_identity" jdbcType="VARCHAR" property="userContactIdentity"/>
-        <result column="user_university" jdbcType="VARCHAR" property="userUniversity"/>
-        <result column="user_department" jdbcType="VARCHAR" property="userDepartment"/>
-        <result column="user_major" jdbcType="VARCHAR" property="userMajor"/>
-        <result column="user_education" jdbcType="VARCHAR" property="userEducation"/>
-        <result column="user_enrollment_year" jdbcType="INTEGER" property="userEnrollmentYear"/>
-        <result column="user_student_id" jdbcType="VARCHAR" property="userStudentId"/>
-        <result column="user_major_category" jdbcType="VARCHAR" property="userMajorCategory"/>
-        <result column="user_educational_system" jdbcType="VARCHAR" property=" userEducationalSystem"/>
-        <result column="user_graduation_time" jdbcType="DATE" property="userGraduationTime"/>
-        <result column="user_loan_type" jdbcType="VARCHAR" property="userLoanType"/>
-        <result column="guardian_id" jdbcType="INTEGER" property="guardianId"/>
-        <result column="relation" jdbcType="VARCHAR" property="relation"/>
-        <result column="account_character_id" jdbcType="INTEGER" property="accountCharacterId"/>
-        <result column="funding_center_id" jdbcType="INTEGER" property="fundingCenterId"/>
-        <result column="province_id" jdbcType="VARCHAR" property="provinceId"/>
-        <result column="city_id" jdbcType="VARCHAR" property="cityId"/>
-        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
-        <result column="user_permanent_address" jdbcType="VARCHAR" property="userPermanentAddress"/>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.Users" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_identity" property="userIdentity" jdbcType="VARCHAR" />
+    <result column="user_security_question" property="userSecurityQuestion" jdbcType="VARCHAR" />
+    <result column="user_security_answer" property="userSecurityAnswer" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="DATE" />
+    <result column="user_famous_race_id" property="userFamousRaceId" jdbcType="INTEGER" />
+    <result column="user_middle_school" property="userMiddleSchool" jdbcType="VARCHAR" />
+    <result column="user_mail_box" property="userMailBox" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="VARCHAR" />
+    <result column="user_weChat" property="userWechat" jdbcType="VARCHAR" />
+    <result column="user_postal_address" property="userPostalAddress" jdbcType="VARCHAR" />
+    <result column="user_bank_card_id" property="userBankCardId" jdbcType="VARCHAR" />
+    <result column="user_postal_code" property="userPostalCode" jdbcType="VARCHAR" />
+    <result column="user_family_phone" property="userFamilyPhone" jdbcType="VARCHAR" />
+    <result column="user_contact_name" property="userContactName" jdbcType="VARCHAR" />
+    <result column="user_contact_phone" property="userContactPhone" jdbcType="VARCHAR" />
+    <result column="user_contact_identity" property="userContactIdentity" jdbcType="VARCHAR" />
+    <result column="user_university" property="userUniversity" jdbcType="VARCHAR" />
+    <result column="user_department" property="userDepartment" jdbcType="VARCHAR" />
+    <result column="user_major" property="userMajor" jdbcType="VARCHAR" />
+    <result column="user_education" property="userEducation" jdbcType="VARCHAR" />
+    <result column="user_enrollment_year" property="userEnrollmentYear" jdbcType="INTEGER" />
+    <result column="user_student_id" property="userStudentId" jdbcType="VARCHAR" />
+    <result column="user_major_category" property="userMajorCategory" jdbcType="VARCHAR" />
+    <result column="user_educational_system" property="userEducationalSystem" jdbcType="VARCHAR" />
+    <result column="user_graduation_time" property="userGraduationTime" jdbcType="DATE" />
+    <result column="user_loan_type" property="userLoanType" jdbcType="VARCHAR" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="account_character_id" property="accountCharacterId" jdbcType="INTEGER" />
+    <result column="funding_center_id" property="fundingCenterId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="user_permanent_address" property="userPermanentAddress" jdbcType="VARCHAR" />
+  </resultMap>
+    <resultMap id="BaseUserLoginMap" type="com.stu.entity.UserLogin" >
+        <id column="user_login_id" property="userLoginId" jdbcType="INTEGER" />
+        <result column="user_login_account" property="userLoginAccount" jdbcType="VARCHAR" />
+        <result column="user_login_password" property="userLoginPassword" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
     </resultMap>
-    <resultMap id="BaseUserLoginMap" type="com.stu.entity.UserLogin">
-        <id column="user_login_id" property="userLoginId" jdbcType="INTEGER"/>
-        <result column="user_login_account" property="userLoginAccount" jdbcType="VARCHAR"/>
-        <result column="user_login_password" property="userLoginPassword" jdbcType="VARCHAR"/>
-        <result column="user_id" property="userId" jdbcType="INTEGER"/>
-    </resultMap>
-
-    <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     user_id, user_name, user_identity, user_security_question, user_security_answer, 
-    user_phone, user_sex,user_birthday, user_famous_race_id, user_middle_school, user_mail_box, user_qq,
-    user_weChat, user_postal_address, user_postal_code, user_family_phone, user_contact_name,
-    user_contact_phone, user_contact_identity, user_university, user_department, user_major, 
-    user_education, user_enrollment_year, user_student_id, user_major_category, user_educational_system,
-    user_graduation_time, user_loan_type,guardian_id,relation, account_character_id,
-    funding_center_id, province_id, city_id, area_id, user_permanent_address
+    user_phone, user_sex, user_birthday, user_famous_race_id, user_middle_school, user_mail_box,
+    user_qq, user_weChat, user_postal_address, user_bank_card_id, user_postal_code,
+    user_family_phone, user_contact_name, user_contact_phone, user_contact_identity, 
+    user_university, user_department, user_major, user_education, user_enrollment_year, 
+    user_student_id, user_major_category, user_educational_system, user_graduation_time,
+    user_loan_type, guardian_id, relation, account_character_id, funding_center_id, province_id, 
+    city_id, area_id, user_permanent_address
   </sql>
     <!--//////////////////////////////////// 查询操作 //////////////////////////////////////-->
     <select id="selectUserByIdentity" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -92,7 +92,7 @@
     set
       user_name = #{userName,jdbcType=VARCHAR},
       user_sex = #{userSex,jdbcType=VARCHAR},
-      user_birthday = #{userBirthday,jdbcType=DATE}
+      user_birthday = #{userBirthday,jdbcType=DATE},
       user_famous_race_id = #{userFamousRaceId,jdbcType=INTEGER},
       user_middle_school = #{userMiddleSchool,jdbcType=VARCHAR},
       user_mail_box = #{userMailBox,jdbcType=VARCHAR},
@@ -114,7 +114,6 @@
       user_educational_system = #{userEducationalSystem,jdbcType=VARCHAR},
       user_graduation_time = #{userGraduationTime,jdbcType=DATE},
       user_loan_type = #{userLoanType,jdbcType=VARCHAR},
-      guardian_id = #{guardianId,jdbcType=INTEGER},
       account_character_id = #{accountCharacterId,jdbcType=INTEGER},
       funding_center_id = #{fundingCenterId,jdbcType=INTEGER},
       province_id = #{provinceId,jdbcType=VARCHAR},
@@ -140,7 +139,9 @@
     update users
     set
 
-      user_birthday = #{userBirthday,jdbcType=DATE}
+      user_bank_card_id = #{userBankCardId,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=DATE},
       user_famous_race_id = #{userFamousRaceId,jdbcType=INTEGER},
       user_middle_school = #{userMiddleSchool,jdbcType=VARCHAR},
       user_mail_box = #{userMailBox,jdbcType=VARCHAR},
@@ -161,8 +162,6 @@
       user_major_category = #{userMajorCategory,jdbcType=VARCHAR},
       user_educational_system = #{userEducationalSystem,jdbcType=VARCHAR},
       user_graduation_time = #{userGraduationTime,jdbcType=DATE},
-      user_loan_type = #{userLoanType,jdbcType=VARCHAR},
-      guardian_id = #{guardianId,jdbcType=INTEGER},
       relation = #{relation,jdbcType=VARCHAR},
       account_character_id = #{accountCharacterId,jdbcType=INTEGER},
       funding_center_id = #{fundingCenterId,jdbcType=INTEGER},
@@ -172,4 +171,10 @@
       user_permanent_address = #{userPermanentAddress,jdbcType=VARCHAR}
     where user_identity = #{userIdentity,jdbcType=VARCHAR}
   </update>
+
+    <update id="updateUserLoanType" parameterType="com.stu.entity.Users">
+        update table users
+        set user_loan_type = #{userLoanType,jdbcType=VARCHAR}
+        where user_identity = #{userIdentity,jdbcType=VARCHAR}
+    </update>
 </mapper>

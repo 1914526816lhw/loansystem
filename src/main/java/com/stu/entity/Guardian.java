@@ -21,6 +21,16 @@ public class Guardian {
 
     private String guardianPermanentAddress;
 
+    private String  userIdentity;
+
+    public String getUserIdentity() {
+        return userIdentity;
+    }
+
+    public void setUserIdentity(String userIdentity) {
+        this.userIdentity = userIdentity;
+    }
+
     public Integer getGuardianId() {
         return guardianId;
     }
@@ -99,5 +109,22 @@ public class Guardian {
 
     public void setGuardianPermanentAddress(String guardianPermanentAddress) {
         this.guardianPermanentAddress = guardianPermanentAddress == null ? null : guardianPermanentAddress.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Guardian{" +
+                "guardianId=" + guardianId +
+                ", guardianName='" + guardianName + '\'' +
+                ", guardianIdentity='" + guardianIdentity + '\'' +
+                ", guardianPostalCode='" + guardianPostalCode + '\'' +
+                ", guardianHealth='" + guardianHealth + '\'' +
+                ", guardianTel='" + guardianTel + '\'' +
+                ", provinceId='" + provinceId + '\'' +
+                ", cityId='" + cityId + '\'' +
+                ", areaId='" + areaId + '\'' +
+                ", guardianPermanentAddress='" + guardianPermanentAddress + '\'' +
+                ", userIdentity='" + userIdentity + '\'' +
+                '}';
     }
 }

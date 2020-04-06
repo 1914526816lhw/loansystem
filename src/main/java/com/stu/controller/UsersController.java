@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.stu.annotation.PassToken;
 import com.stu.annotation.UserLoginToken;
 import com.stu.entity.Guardian;
+
 import com.stu.entity.Users;
-import com.stu.service.GuardianService;
 import com.stu.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -140,7 +140,7 @@ public class UsersController {
     public JSONObject improveUserInfo(
             String userLoginAccount, String userSex,Date userBirthday, int userFamousRaceId, String userMiddleSchool,
             int accountCharacterId, int fundingCenterId, String provinceId, String cityId, String areaId,
-            String userPermanentAddress, String userPostalCode, String userMailBox, String userQq, String userWeChat,
+            String userPermanentAddress,String userBankCardId, String userPostalCode, String userMailBox, String userQq, String userWeChat,
             String userPostalAddress, String userFamilyPhone, String userContactName, String userContactPhone,
             String userContactIdentity, String userUniversity, String userDepartment, String userMajor,
             String userEducation, int userEnrollmentYear, String userStudentId, String userMajorCategory,
@@ -191,6 +191,8 @@ public class UsersController {
         user.setUserEducationalSystem(userEducationalSystem);
         user.setUserGraduationTime(userGraduationTime);
         user.setRelation(relation);
+        user.setUserBankCardId(userBankCardId);
+        System.out.println(user.toString());
         return usersService.improveUserInfo(guardian, user);
     }
 
@@ -259,6 +261,7 @@ public class UsersController {
         user.setUserMajorCategory(userMajorCategory);
         user.setUserEducationalSystem(userEducationalSystem);
         user.setUserGraduationTime(userGraduationTime);
+
         return usersService.updateUser(user,changeReason);
     }
 }

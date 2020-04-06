@@ -1,7 +1,6 @@
 package com.stu.mapper;
 
 import com.stu.entity.UserLogin;
-import com.stu.entity.Users;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -19,4 +19,5 @@ public interface AccountCharacterMapper {
 //
 //    int updateByPrimaryKey(AccountCharacter record);
     List<AccountCharacter> selectAllAccountCharacter();
+    AccountCharacter selectByAccountCharacterId(int accountCharacterId);
 }

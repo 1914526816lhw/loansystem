@@ -5,21 +5,15 @@ import com.stu.annotation.PassToken;
 import com.stu.annotation.UserLoginToken;
 import com.stu.config.RedisConfig;
 import com.stu.entity.UserLogin;
-import com.stu.entity.Users;
 import com.stu.service.UserLoginService;
 import com.stu.service.UsersService;
-import com.stu.util.Interceptor.TokenUtil;
 import com.stu.util.enAndDeCription.Md5Util;
-import com.stu.util.sms.SmsUtil;
-import org.apache.catalina.User;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * ClassName：UserLoginController

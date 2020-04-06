@@ -1,6 +1,5 @@
 package com.stu.service;
 
-import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.config.RedisConfig;
 import com.stu.entity.ChangeLog;
@@ -11,14 +10,15 @@ import com.stu.mapper.ChangeLogMapper;
 import com.stu.mapper.GuardianMapper;
 import com.stu.mapper.UserLoginMapper;
 import com.stu.mapper.UsersMapper;
+import com.stu.util.DateUtil;
 import com.stu.util.enAndDeCription.Md5Util;
+import org.apache.catalina.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -203,10 +203,10 @@ public class UsersServiceImpl implements UsersService {
             } else if ("续贷".equals(userLoanType)) {
                 //毕业年份
                 Date date = users.getUserGraduationTime();
-                Calendar calendar = Calendar.getInstance();
+//                Calendar calendar = Calendar.getInstance();
 //                System.out.println("当前年份" + calendar.get(Calendar.YEAR));
 //                System.out.println("毕业年份" + DateUtil.year(date));
-                if (calendar.get(Calendar.YEAR) < DateUtil.year(date)) {
+                if (DateUtil.getCurrentYear() < cn.hutool.core.date.DateUtil.year(date)) {
                     jsonObject.put("status", 200);
                     data.put("data", userLoanType);
                 } else {
@@ -223,10 +223,11 @@ public class UsersServiceImpl implements UsersService {
     /**
      * MethodName: getUserName
      * Description: 获取用户名
-     * @author lihw
-     * CreateTime 2020/4/1 17:32
+     *
      * @param userIdentity
      * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/4/1 17:32
      */
     @Override
     public JSONObject getUserName(String userIdentity) {
@@ -247,25 +248,26 @@ public class UsersServiceImpl implements UsersService {
     /**
      * MethodName: improveUserInfo
      * Description: 完善用户信息
-     * @author lihw
-     * CreateTime 2020/4/4 16:34
+     *
      * @param guardian,user
      * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/4/4 16:34
      */
     @Override
     public JSONObject improveUserInfo(Guardian guardian, Users user) {
         JSONObject jsonObject = new JSONObject();
-        try {
-            if(guardianMapper.insert(guardian)==1){
-                user.setGuardianId(guardian.getGuardianId());
+        try {//完善用户信息
+            if (usersMapper.improveUserInfo(user) == 1) {
+                guardian.setUserIdentity(user.getUserIdentity());
 
-                //完善用户信息
-                if(usersMapper.improveUserInfo(user)==1){
-                    jsonObject.put("status",201);
+                if (guardianMapper.insert(guardian) == 1) {
+                    jsonObject.put("status", 200);
                 }
             }
         } catch (Exception e) {
-            jsonObject.put("status",401);
+            e.printStackTrace();
+            jsonObject.put("status", 401);
         }
         return jsonObject;
     }
@@ -275,31 +277,31 @@ public class UsersServiceImpl implements UsersService {
         JSONObject jsonObject = new JSONObject();
         JSONObject data = new JSONObject();
         Users user = usersMapper.selectUserByIdentity(userIdentity);
-        if(user!=null){
-            jsonObject.put("status",200);
-            data.put("user",user);
-            jsonObject.put("data",data);
-        }else {
-            jsonObject.put("data",null);
+        if (user != null) {
+            jsonObject.put("status", 200);
+            data.put("user", user);
+            jsonObject.put("data", data);
+        } else {
+            jsonObject.put("data", null);
         }
         return jsonObject;
     }
 
     @Override
-    public JSONObject updateUser(Users users,String changeReason) {
+    public JSONObject updateUser(Users users, String changeReason) {
         JSONObject jsonObject = new JSONObject();
         try {
-            if(usersMapper.updateUserByIdentity(users)==1){
+            if (usersMapper.updateUserByIdentity(users) == 1) {
                 ChangeLog changeLog = new ChangeLog();
                 changeLog.setUserIdentity(users.getUserIdentity());
                 changeLog.setGuardianIdentity(null);
                 changeLog.setChangeReasonContent(changeReason);
-                if(changeLogMapper.insertUserChangeReason(changeLog) == 1){
-                    jsonObject.put("status",200);
+                if (changeLogMapper.insertUserChangeReason(changeLog) == 1) {
+                    jsonObject.put("status", 200);
                 }
             }
         } catch (Exception e) {
-            jsonObject.put("status",401);
+            jsonObject.put("status", 401);
         }
         return jsonObject;
     }

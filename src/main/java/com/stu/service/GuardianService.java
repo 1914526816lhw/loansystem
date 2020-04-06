@@ -15,6 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GuardianService {
     JSONObject getGuardianByUserIdentity(String userIdentity);
+
     JSONObject getGuardianInfo(String userIdentity);
-    JSONObject updateGuardian(String userIdentity, Guardian guardian,String changeReason);
+
+    JSONObject updateGuardian(Guardian guardian, String changeReason);
 }

@@ -55,11 +55,11 @@
 <!--			<property name="useActualColumnNames" value="false" />-->
 <!--		</table>-->
 
-<!--		<table tableName="users" domainObjectName="Users"-->
-<!--			enableCountByExample="false" enableDeleteByExample="false"-->
-<!--			enableSelectByExample="false" enableUpdateByExample="false">-->
-<!--			<property name="useActualColumnNames" value="false" />-->
-<!--		</table>-->
+		<table tableName="users" domainObjectName="Users"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+		</table>
 
 <!--		<table tableName="provinces" domainObjectName="Provinces"-->
 <!--			   enableCountByExample="false" enableDeleteByExample="false"-->
@@ -97,11 +97,11 @@
 <!--			<property name="useActualColumnNames" value="false" />-->
 <!--		</table>-->
 
-		<table tableName="fundingCenter" domainObjectName="FundingCenter"
-			   enableCountByExample="false" enableDeleteByExample="false"
-			   enableSelectByExample="false" enableUpdateByExample="false">
-			<property name="useActualColumnNames" value="false" />
-		</table>
+<!--		<table tableName="fundingCenter" domainObjectName="FundingCenter"-->
+<!--			   enableCountByExample="false" enableDeleteByExample="false"-->
+<!--			   enableSelectByExample="false" enableUpdateByExample="false">-->
+<!--			<property name="useActualColumnNames" value="false" />-->
+<!--		</table>-->
 
 <!--		<table tableName="loanApplication" domainObjectName="LoanApplication"-->
 <!--			   enableCountByExample="false" enableDeleteByExample="false"-->

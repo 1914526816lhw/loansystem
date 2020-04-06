@@ -26,4 +26,5 @@ public interface UsersMapper {
     int updateUserPhone(String userIdentity, String userPhone);
     int improveUserInfo(Users users) throws Exception;
     int updateUserByIdentity(Users users) throws Exception;
+    int updateUserLoanType(Users users) throws Exception;
 }

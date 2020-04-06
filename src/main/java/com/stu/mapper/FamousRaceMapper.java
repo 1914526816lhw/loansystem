@@ -20,4 +20,6 @@ public interface FamousRaceMapper {
 //    int updateByPrimaryKey(FamousRace record);
 
     List<FamousRace> selectAllFamousRace();
+
+    FamousRace selectByFamousRaceId(int famousRaceId);
 }

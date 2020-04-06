@@ -44,6 +44,7 @@ public class GuardianController {
             String userLoginAccount, String guardianName, String guardianIdentity, String guardianProvinceId, String guardianCityId, String guardianAreaId, String guardianPermanentAddress,
             String guardianPostalCode, String guardianHealth, String guardianTel, String changeReason) {
         Guardian guardian = new Guardian();
+        guardian.setUserIdentity(userLoginAccount);
         guardian.setGuardianName(guardianName);
         guardian.setGuardianIdentity(guardianIdentity);
         guardian.setProvinceId(guardianProvinceId);
@@ -54,7 +55,8 @@ public class GuardianController {
         guardian.setGuardianHealth(guardianHealth);
         guardian.setGuardianTel(guardianTel);
 
-        return guardianService.updateGuardian(userLoginAccount,guardian,changeReason);
+        guardian.toString();
+        return guardianService.updateGuardian(guardian,changeReason);
     }
 
 }

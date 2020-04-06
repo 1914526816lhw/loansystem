@@ -31,6 +31,8 @@ public class Users {
 
     private String userPostalAddress;
 
+    private String userBankCardId;
+
     private String userPostalCode;
 
     private String userFamilyPhone;
@@ -61,8 +63,6 @@ public class Users {
 
     private String userLoanType;
 
-    private Integer guardianId;
-
     private String relation;
 
     private Integer accountCharacterId;
@@ -76,8 +76,6 @@ public class Users {
     private String areaId;
 
     private String userPermanentAddress;
-
-
 
     public Integer getUserId() {
         return userId;
@@ -135,6 +133,14 @@ public class Users {
         this.userSex = userSex == null ? null : userSex.trim();
     }
 
+    public Date getUserBirthday() {
+        return userBirthday;
+    }
+
+    public void setUserBirthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+
     public Integer getUserFamousRaceId() {
         return userFamousRaceId;
     }
@@ -168,6 +174,14 @@ public class Users {
         this.userWechat = userWechat == null ? null : userWechat.trim();
     }
 
+
+    public String getUserBankCardId() {
+        return userBankCardId;
+    }
+
+    public void setUserBankCardId(String userBankCardId) {
+        this.userBankCardId = userBankCardId == null ? null : userBankCardId.trim();
+    }
 
     public String getUserPostalCode() {
         return userPostalCode;
@@ -246,7 +260,7 @@ public class Users {
     }
 
     public void setUserEnrollmentYear(Integer userEnrollmentYear) {
-        this.userEnrollmentYear = userEnrollmentYear ;
+        this.userEnrollmentYear = userEnrollmentYear;
     }
 
     public String getUserStudentId() {
@@ -266,6 +280,7 @@ public class Users {
     }
 
 
+
     public Date getUserGraduationTime() {
         return userGraduationTime;
     }
@@ -282,12 +297,12 @@ public class Users {
         this.userLoanType = userLoanType == null ? null : userLoanType.trim();
     }
 
-    public Integer getGuardianId() {
-        return guardianId;
+    public String getRelation() {
+        return relation;
     }
 
-    public void setGuardianId(Integer guardianId) {
-        this.guardianId = guardianId;
+    public void setRelation(String relation) {
+        this.relation = relation == null ? null : relation.trim();
     }
 
     public Integer getAccountCharacterId() {
@@ -360,21 +375,5 @@ public class Users {
 
     public void setUserEducationalSystem(String userEducationalSystem) {
         this.userEducationalSystem = userEducationalSystem;
-    }
-
-    public Date getUserBirthday() {
-        return userBirthday;
-    }
-
-    public void setUserBirthday(Date userBirthday) {
-        this.userBirthday = userBirthday;
-    }
-
-    public String getRelation() {
-        return relation;
-    }
-
-    public void setRelation(String relation) {
-        this.relation = relation;
     }
 }

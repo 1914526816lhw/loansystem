@@ -1,5 +1,6 @@
 package com.stu.controller;
 
+import com.stu.annotation.UserLoginToken;
 import com.stu.dto.UploadFileResponse;
 import com.stu.service.FileService;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
  */
 
 @RestController
+@RequestMapping("/user")
 public class FileController {
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
@@ -45,8 +47,7 @@ public class FileController {
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();
-        String fileLoadAddress =  ServletUriComponentsBuilder.fromCurrentContextPath().path(fileName).toUriString();
-        return new UploadFileResponse(fileName, fileDownLoadUri, file.getContentType(), file.getSize(),fileLoadAddress);
+        return new UploadFileResponse(fileName, fileDownLoadUri, file.getContentType(), file.getSize());
     }
 
 
@@ -55,6 +56,7 @@ public class FileController {
         return Arrays.stream(files).map(this::uploadFile).collect(Collectors.toList());
     }
 
+    @UserLoginToken
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
         //Load file as Resource

@@ -12,14 +12,13 @@ public class UploadFileResponse {
     private String fileName;
     private String FileDownLoadUri;
     private String fileType;
-    private String fileLoadAddress;
     private long size;
-    public UploadFileResponse(String fileName, String FileDownLoadUri, String fileType, long size, String fileLoadAddress) {
+    public UploadFileResponse(String fileName, String FileDownLoadUri, String fileType, long size) {
         this.fileName = fileName;
         this.FileDownLoadUri = FileDownLoadUri;
         this.fileType = fileType;
         this.size = size;
-        this.fileLoadAddress = fileLoadAddress;
+
     }
 
     public String getFileName() {
@@ -54,13 +53,6 @@ public class UploadFileResponse {
         this.size = size;
     }
 
-    public String getFileLoadAddress() {
-        return fileLoadAddress;
-    }
-
-    public void setFileLoadAddress(String fileLoadAddress) {
-        this.fileLoadAddress = fileLoadAddress;
-    }
 
     @Override
     public String toString() {

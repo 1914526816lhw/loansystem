@@ -3,7 +3,6 @@ package com.stu.util.file;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.itextpdf.text.*;
@@ -86,7 +85,7 @@ public class PdfUtil {
 
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        Map<String,String> map = new HashMap();
 //        map.put("userName","张三");
 //        map.put("createDate",String.format("YYYY年MM月DD日",new Date()));
@@ -100,12 +99,12 @@ public class PdfUtil {
 //        o.put("dateMap",map);
 //        o.put("imgMap",map2);
 
-        Map<String, String> map = new HashMap();
-        map.put("name", "李宏伟");
-        map.put("sex", "男");
-        map.put("age", String.valueOf(22));
-        Map<String, Object> o = new HashMap();
-        o.put("dataMap", map);
-        pdfout(o);
-    }
+//        Map<String, String> map = new HashMap();
+//        map.put("name", "李宏伟");
+//        map.put("sex", "男");
+//        map.put("age", String.valueOf(22));
+//        Map<String, Object> o = new HashMap();
+//        o.put("dataMap", map);
+//        pdfout(o);
+//    }
 }

@@ -31,20 +31,21 @@ public class GuardianServiceImpl implements GuardianService {
     /**
      * MethodName: getGuardianByUserIdentity
      * Description: 通过userIdentity判断是否有共同贷款人
-     * @author lihw
-     * CreateTime 2020/4/4 15:21
+     *
      * @param userIdentity
      * @return jsonObject
+     * @author lihw
+     * CreateTime 2020/4/4 15:21
      */
     @Override
     public JSONObject getGuardianByUserIdentity(String userIdentity) {
-        JSONObject jsonObject =  new JSONObject();
+        JSONObject jsonObject = new JSONObject();
         Guardian guardian = guardianMapper.selectByUserIdentity(userIdentity);
-        if(guardian!=null){
-            jsonObject.put("status",200);
+        if (guardian != null) {
+            jsonObject.put("status", 200);
 
-        }else {
-            jsonObject.put("status",401);
+        } else {
+            jsonObject.put("status", 401);
         }
 
         return jsonObject;
@@ -56,37 +57,37 @@ public class GuardianServiceImpl implements GuardianService {
         JSONObject jsonObject = new JSONObject();
         JSONObject data = new JSONObject();
         Guardian guardian = guardianMapper.selectByUserIdentity(userIdentity);
-        if(guardian!=null){
-            jsonObject.put("status",200);
-            data.put("guardian",guardian);
-            jsonObject.put("data",data);
-        }else {
-            jsonObject.put("status",401);
-            jsonObject.put("data",null);
+        if (guardian != null) {
+            jsonObject.put("status", 200);
+            data.put("guardian", guardian);
+            jsonObject.put("data", data);
+        } else {
+            jsonObject.put("status", 401);
+            jsonObject.put("data", null);
         }
         return jsonObject;
     }
 
     @Override
-    public JSONObject updateGuardian(String userIdentity, Guardian guardian, String changeReason) {
+    public JSONObject updateGuardian(Guardian guardian, String changeReason) {
         JSONObject jsonObject = new JSONObject();
-        Users users  = usersMapper.selectUserByIdentity(userIdentity);
-        if(users!=null){
-            guardian.setGuardianId(users.getGuardianId());
-            try {
-                if(guardianMapper.updateGuardian(guardian)==1){
-                    ChangeLog changeLog = new ChangeLog();
-                    changeLog.setUserIdentity(userIdentity);
-                    changeLog.setGuardianIdentity(guardian.getGuardianIdentity());
-                    changeLog.setChangeReasonContent(changeReason);
-                    if(changeLogMapper.insertUserChangeReason(changeLog)==1){
-                        jsonObject.put("status",200);
-                    }
+
+        try {
+            if (guardianMapper.updateGuardian(guardian) == 1) {
+                ChangeLog changeLog = new ChangeLog();
+                changeLog.setGuardianIdentity(guardian.getGuardianIdentity());
+                changeLog.setChangeReasonContent(changeReason);
+                if (changeLogMapper.insertUserChangeReason(changeLog) == 1) {
+                    jsonObject.put("status", 200);
                 }
-            } catch (Exception e) {
-               jsonObject.put("status",401);
+            }else {
+                jsonObject.put("status", 401);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonObject.put("status", 401);
         }
+
         return jsonObject;
     }
 }
