@@ -37,7 +37,7 @@ public class AlipayServiceImpl implements AlipayService {
         alipayTradeWapPayModel.setOutTradeNo(sourceMap.get("out_trade_no"));
         alipayTradeWapPayModel.setProductCode("FAST_INSTANT_TRADE_PAY");
         alipayTradeWapPayModel.setTotalAmount(sourceMap.get("total_amount"));
-        alipayTradeWapPayModel.setSubject("国家开发银行");
+        alipayTradeWapPayModel.setSubject(sourceMap.get("product_name"));
         alipayTradeWapPayModel.setBody(sourceMap.get("body"));
         alipayRequest.setBizModel(alipayTradeWapPayModel);
         String form="";

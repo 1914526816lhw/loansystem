@@ -56,7 +56,6 @@ public class FileController {
         return Arrays.stream(files).map(this::uploadFile).collect(Collectors.toList());
     }
 
-    @UserLoginToken
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
         //Load file as Resource

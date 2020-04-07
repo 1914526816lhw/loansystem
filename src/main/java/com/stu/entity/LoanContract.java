@@ -15,7 +15,6 @@ public class LoanContract {
 
     private int loanTerm;
 
-    private Date repaymentDate;
 
     private String loanReason;
 
@@ -24,6 +23,15 @@ public class LoanContract {
     private String userIdentity;
 
     private String guardianIdentity;
+    private String loanProgress;
+
+    public String getLoanProgress() {
+        return loanProgress;
+    }
+
+    public void setLoanProgress(String loanProgress) {
+        this.loanProgress = loanProgress;
+    }
 
     public Integer getLoanId() {
         return loanId;
@@ -59,18 +67,6 @@ public class LoanContract {
 
     public Date getLoanDate() {
         return loanDate;
-    }
-
-    public void setLoanDate(Date loanDate) {
-        this.loanDate = loanDate;
-    }
-
-    public Date getRepaymentDate() {
-        return repaymentDate;
-    }
-
-    public void setRepaymentDate(Date repaymentDate) {
-        this.repaymentDate = repaymentDate;
     }
 
     public String getUserIdentity() {

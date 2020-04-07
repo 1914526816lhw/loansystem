@@ -1,6 +1,7 @@
 package com.stu.mapper;
 
 import com.stu.entity.Areas;
+import com.stu.vo.AreasVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public interface AreasMapper {
 //    int updateByPrimaryKey(Areas record);
 
     List<Areas> selectAreaByCityId(String cityId);
+    AreasVo selectAreaVoByAreaId(String areaId);
 }

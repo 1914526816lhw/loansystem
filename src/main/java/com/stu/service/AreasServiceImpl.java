@@ -31,8 +31,8 @@ public class AreasServiceImpl implements AreasService {
         JSONArray data = new JSONArray();
         List<Areas> citiesList = areasMapper.selectAreaByCityId(cityId);
         for (Areas area:citiesList){
-            areaJson.put("cityId",area.getAreaId());
-            areaJson.put("cityName",area.getAreaName());
+            areaJson.put("areaId",area.getAreaId());
+            areaJson.put("areaName",area.getAreaName());
             data.add(JSON.parseObject(areaJson.toJSONString()));
             areaJson.clear();
         }

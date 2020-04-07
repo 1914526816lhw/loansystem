@@ -1,5 +1,6 @@
 package com.stu.entity;
 
+
 import java.util.Date;
 
 public class Users {
@@ -68,10 +69,6 @@ public class Users {
     private Integer accountCharacterId;
 
     private Integer fundingCenterId;
-
-    private String provinceId;
-
-    private String cityId;
 
     private String areaId;
 
@@ -319,22 +316,6 @@ public class Users {
 
     public void setFundingCenterId(Integer fundingCenterId) {
         this.fundingCenterId = fundingCenterId;
-    }
-
-    public String getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(String provinceId) {
-        this.provinceId = provinceId == null ? null : provinceId.trim();
-    }
-
-    public String getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(String cityId) {
-        this.cityId = cityId == null ? null : cityId.trim();
     }
 
     public String getAreaId() {

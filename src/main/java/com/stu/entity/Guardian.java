@@ -13,10 +13,6 @@ public class Guardian {
 
     private String guardianTel;
 
-    private String provinceId;
-
-    private String cityId;
-
     private String areaId;
 
     private String guardianPermanentAddress;
@@ -79,21 +75,6 @@ public class Guardian {
         this.guardianTel = guardianTel == null ? null : guardianTel.trim();
     }
 
-    public String getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(String provinceId) {
-        this.provinceId = provinceId == null ? null : provinceId.trim();
-    }
-
-    public String getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(String cityId) {
-        this.cityId = cityId == null ? null : cityId.trim();
-    }
 
     public String getAreaId() {
         return areaId;
@@ -111,20 +92,5 @@ public class Guardian {
         this.guardianPermanentAddress = guardianPermanentAddress == null ? null : guardianPermanentAddress.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Guardian{" +
-                "guardianId=" + guardianId +
-                ", guardianName='" + guardianName + '\'' +
-                ", guardianIdentity='" + guardianIdentity + '\'' +
-                ", guardianPostalCode='" + guardianPostalCode + '\'' +
-                ", guardianHealth='" + guardianHealth + '\'' +
-                ", guardianTel='" + guardianTel + '\'' +
-                ", provinceId='" + provinceId + '\'' +
-                ", cityId='" + cityId + '\'' +
-                ", areaId='" + areaId + '\'' +
-                ", guardianPermanentAddress='" + guardianPermanentAddress + '\'' +
-                ", userIdentity='" + userIdentity + '\'' +
-                '}';
-    }
+
 }

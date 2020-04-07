@@ -53,10 +53,10 @@ public class AlipayConfig {
     public static String RSA_PRIVATE_KEY = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCaTDBNzK2IH1zo4MmcUIJ744s3YM+zBOJoeMyxVctdvjJWG6+r6ubI6o8o0lMHUJ2glROsMI68Gr564dSwaWN1afuJ2vU5aENznRb/Wov02+mOh6l2K71FDfmmZTtW3g4RzX6N9MBYbmNrmc2HZwqApIYYcfcTk3mvUcWLxbzAY6Lk24++sPAfaSB8ew0j02JH1x4ilUvGCJ/pm0VzjyHektPIFbaboAIcdE35WB+DZFAnv6aqqLzySugVOjlmDq0GJ7ldub3CEGlmOhwnSOEyVsQdCbFz/VZDp4KE1EGzJtfOaWCho/OjK8j/gMGlaV34p8iRRgSZZuB944Pd6P0rAgMBAAECggEATbLUGDlboVJ5zON1Yvu/2XcqIcbkkHeDM6yxFxPnBtvCKU5j1iTB9qb3VE0ldmeIGNc5Qtpo5hxpkyOpoPRRG001V6QlHLV+UffnHsuP8svS/u0dzt4Tv3RcJQiRKxtC5oAenImFWoKsGgEnWGnxBfrTc/ffvcHj4v9AhTQb6pz34BBhhIqGEHhLSZq8Wveih0Tq7oTNnjykf74Q2FyFev/07R3M4I+WQwCCGUHyzNTQmU0dXshLd/9V9mc5T5muAwR8FGlWZT3Sbs7ecEIzNu0/ATN23uSQ1kvjZKJC3zXQL40TbZFynXF37k7LbxcBjqkj7AFflqjq2Nq8ONQa0QKBgQDjzhv+iG0FP/Xyg7ga47C9pUMi4gFRsaToMoRIWcUXGTrfu/OL8Llz4rgAVHjhWyoA0LVcn2UaadwYD+OlbnT7eNR7Xy2j0YilJ6ndJmEeblkNgcAe518EWknM6hT8xqJOigDDsKrm9rI97z7icUi3VXMu/bI1FYKhmGFLzTRcdwKBgQCtZQfxu/dphe4dtq+xhw0FLElXTW0FBkzz3F22ocK8cX5d+FjipdbhPM0ooQI2HV7tiZptMzNL5jm9IGa7ApOlYi0heOWYt5tlA2XOGQ5VTdjGRcEAE6yMcKTz+6rHXxmxy5b2QGoRsYQo6CW/Ivsd9bxUR/dyLnNuH6DN/3t17QKBgHIFwSdW29Kr4AwB+A2ld9qEtKTqIKTmWNdMKcAZBrh4DWrdJZse44Ror5aisVqDCfQcgxqYQb/Fyr9UfKpaLj2MjjYuPqbngxC/WJtz0Vqs+u/yyNnvDzUbiCMD63tWZPkQxC8u52vxgOfVL1GiSDZTk/KqUx+U46zEm7aYQKQjAoGAex4Po/85T73/My3yVnV0M0Yc1VZuoHC21ziTegglw7Q6a/LY+iWTC98mNUEN1urH6pYYBo2iULQqLzYAe6z6tSWesfOr4uIL/o+JC+wSl1NtJmuE/M77Z8Tb+zmpK2NFVU8f474dEm8fTgR4ON1XvRAtJxLqijKdV4YxodNUEIkCgYByeaomc+X3yNDIuj3uVweT9zKXpWGfnpFtnsTQK33uScpH38D+kZVQ/2fqDl8SO6OMCZQ06Ps3jZchEzD4Szn7Xg3eyUKyEflUbVaZnpkH0l7ZNkVLHSk9L6dvfliJUwg+Jl4K74AO97KAtFFxn5/NLvndk7VFrPs0AgsQcpi7Rw==";
 
     //电脑网站支付结果异步通知，可以参考异步文档，一定要是外网能访问的
-    public static String notify_url = "http://www.baidu.com/";
+    public static String notify_url = "http://106.15.203.32:9999/user/notifyUrl";
 
     //电脑网站支付结果同步通知，用于转跳到用户自己的页面，一定要是外网能访问的
-    public static String return_url = "http://www.baidu.com/";
+    public static String return_url = "http://106.15.203.32:9999/user/returnUrl";
 
     //沙箱接口，正式上线时请改用正式支付接口
     public static String URL = "https://openapi.alipaydev.com/gateway.do";

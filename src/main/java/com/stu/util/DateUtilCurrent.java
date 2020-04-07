@@ -14,7 +14,7 @@ import java.util.Date;
  * CreateTime: 2020/4/6 14:13
  * @version 1.0.0
  */
-public class DateUtil {
+public class DateUtilCurrent {
 
     private static Calendar calendar = Calendar.getInstance();
 
@@ -38,16 +38,16 @@ public class DateUtil {
      * @param
      * @return
      */
-//    public static Date getDate(Date strDate) {
-//        DateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd");
-//        Date newDate
-//        try {
-//          newDate =  simpleDateFormat.parse(strDate);
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return newDate;
-//    }
+    public static String getDate(Date strDate) {
+        DateFormat simpleDateFormat= new SimpleDateFormat("yyyy年MM月dd日");
+        String newDate = null;
+        try {
+          newDate =  simpleDateFormat.format(strDate);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newDate;
+    }
 
 }

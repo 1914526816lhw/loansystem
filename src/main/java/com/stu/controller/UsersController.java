@@ -139,20 +139,18 @@ public class UsersController {
     @RequestMapping("/improveUserInfo")
     public JSONObject improveUserInfo(
             String userLoginAccount, String userSex,Date userBirthday, int userFamousRaceId, String userMiddleSchool,
-            int accountCharacterId, int fundingCenterId, String provinceId, String cityId, String areaId,
+            int accountCharacterId, int fundingCenterId, String areaId,
             String userPermanentAddress,String userBankCardId, String userPostalCode, String userMailBox, String userQq, String userWeChat,
             String userPostalAddress, String userFamilyPhone, String userContactName, String userContactPhone,
             String userContactIdentity, String userUniversity, String userDepartment, String userMajor,
             String userEducation, int userEnrollmentYear, String userStudentId, String userMajorCategory,
             String userEducationalSystem, Date userGraduationTime,String relation,
-            String guardianName, String guardianIdentity, String guardianProvinceId, String guardianCityId, String guardianAreaId, String guardianPermanentAddress,
+            String guardianName, String guardianIdentity, String guardianAreaId, String guardianPermanentAddress,
             String guardianPostalCode, String guardianHealth, String guardianTel) {
         //添加共同贷款人
         Guardian guardian = new Guardian();
         guardian.setGuardianName(guardianName);
         guardian.setGuardianIdentity(guardianIdentity);
-        guardian.setProvinceId(guardianProvinceId);
-        guardian.setCityId(guardianCityId);
         guardian.setAreaId(guardianAreaId);
         guardian.setGuardianPermanentAddress(guardianPermanentAddress);
         guardian.setGuardianPostalCode(guardianPostalCode);
@@ -168,8 +166,6 @@ public class UsersController {
         user.setUserMiddleSchool(userMiddleSchool);
         user.setAccountCharacterId(accountCharacterId);
         user.setFundingCenterId(fundingCenterId);
-        user.setProvinceId(provinceId);
-        user.setCityId(cityId);
         user.setAreaId(areaId);
         user.setUserPermanentAddress(userPermanentAddress);
         user.setUserPostalCode(userPostalCode);
@@ -222,27 +218,16 @@ public class UsersController {
      */
     @UserLoginToken
     @RequestMapping("/updateUser")
-    public JSONObject updateUser(
-            String userName,String userLoginAccount, String userSex,Date userBirthday, int userFamousRaceId, String userMiddleSchool,
-            int accountCharacterId, int fundingCenterId, String provinceId, String cityId, String areaId,
-            String userPermanentAddress, String userPostalCode, String userMailBox, String userQq, String userWeChat,
+    public JSONObject updateUser(String userLoginAccount, String userSex,Date userBirthday, String userMiddleSchool,
+           String userPostalCode, String userMailBox, String userQq, String userWeChat,
             String userPostalAddress, String userFamilyPhone, String userContactName, String userContactPhone,
-            String userContactIdentity, String userUniversity, String userDepartment, String userMajor,
-            String userEducation, int userEnrollmentYear, String userStudentId, String userMajorCategory,
-            String userEducationalSystem, Date userGraduationTime,String changeReason){
+            String userContactIdentity, String userDepartment, String userMajor,
+            String userStudentId, String userMajorCategory, String changeReason){
         Users user = new Users();
-        user.setUserName(userName);
         user.setUserIdentity(userLoginAccount);
         user.setUserSex(userSex);
         user.setUserBirthday(userBirthday);
-        user.setUserFamousRaceId(userFamousRaceId);
         user.setUserMiddleSchool(userMiddleSchool);
-        user.setAccountCharacterId(accountCharacterId);
-        user.setFundingCenterId(fundingCenterId);
-        user.setProvinceId(provinceId);
-        user.setCityId(cityId);
-        user.setAreaId(areaId);
-        user.setUserPermanentAddress(userPermanentAddress);
         user.setUserPostalCode(userPostalCode);
         user.setUserMailBox(userMailBox);
         user.setUserQq(userQq);
@@ -252,16 +237,10 @@ public class UsersController {
         user.setUserContactName(userContactName);
         user.setUserContactIdentity(userContactIdentity);
         user.setUserContactPhone(userContactPhone);
-        user.setUserUniversity(userUniversity);
         user.setUserDepartment(userDepartment);
         user.setUserMajor(userMajor);
-        user.setUserEducation(userEducation);
-        user.setUserEnrollmentYear(userEnrollmentYear);
         user.setUserStudentId(userStudentId);
         user.setUserMajorCategory(userMajorCategory);
-        user.setUserEducationalSystem(userEducationalSystem);
-        user.setUserGraduationTime(userGraduationTime);
-
         return usersService.updateUser(user,changeReason);
     }
 }

@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.stu.mapper.ChangeLogMapper" >
-  <resultMap id="BaseResultMap" type="com.stu.entity.ChangeLog" >
-    <id column="change_reason_id" property="changeReasonId" jdbcType="INTEGER" />
-    <result column="user_identity" property="userIdentity" jdbcType="VARCHAR" />
-    <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR" />
-    <result column="change_reason_content" property="changeReasonContent" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.stu.mapper.ChangeLogMapper">
+    <resultMap id="BaseResultMap" type="com.stu.entity.ChangeLog">
+        <id column="change_reason_id" property="changeReasonId" jdbcType="INTEGER"/>
+        <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
+        <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR"/>
+        <result column="change_reason_content" property="changeReasonContent" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     change_reason_id, user_identity, guardian_identity, change_reason_content
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from changeLog
-    where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from changeLog
+        where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from changeLog
     where change_reason_id = #{changeReasonId,jdbcType=INTEGER}
   </delete>
-  <insert id="insertUserChangeReason" parameterType="com.stu.entity.ChangeLog" >
-    insert into changeLog (user_identity, guardian_identity, change_reason_content)
-    values (#{userIdentity,jdbcType=VARCHAR},#{guardianIdentity,jdbcType=VARCHAR},#{changeReasonContent,jdbcType=VARCHAR})
+    <insert id="insertUserChangeReason" parameterType="com.stu.entity.ChangeLog">
+    insert into changeLog (user_identity, change_reason_content)
+    values (#{userIdentity,jdbcType=VARCHAR},#{changeReasonContent,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.stu.entity.ChangeLog" >
+    <update id="updateByPrimaryKey" parameterType="com.stu.entity.ChangeLog">
     update changeLog
     set user_identity = #{userIdentity,jdbcType=VARCHAR},
       guardian_identity = #{guardianIdentity,jdbcType=VARCHAR},

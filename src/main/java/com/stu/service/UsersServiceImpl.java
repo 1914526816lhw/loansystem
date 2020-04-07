@@ -1,5 +1,6 @@
 package com.stu.service;
 
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.config.RedisConfig;
 import com.stu.entity.ChangeLog;
@@ -10,9 +11,8 @@ import com.stu.mapper.ChangeLogMapper;
 import com.stu.mapper.GuardianMapper;
 import com.stu.mapper.UserLoginMapper;
 import com.stu.mapper.UsersMapper;
-import com.stu.util.DateUtil;
+import com.stu.util.DateUtilCurrent;
 import com.stu.util.enAndDeCription.Md5Util;
-import org.apache.catalina.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -206,7 +206,7 @@ public class UsersServiceImpl implements UsersService {
 //                Calendar calendar = Calendar.getInstance();
 //                System.out.println("当前年份" + calendar.get(Calendar.YEAR));
 //                System.out.println("毕业年份" + DateUtil.year(date));
-                if (DateUtil.getCurrentYear() < cn.hutool.core.date.DateUtil.year(date)) {
+                if (DateUtilCurrent.getCurrentYear() < DateUtil.year(date)) {
                     jsonObject.put("status", 200);
                     data.put("data", userLoanType);
                 } else {
@@ -294,13 +294,13 @@ public class UsersServiceImpl implements UsersService {
             if (usersMapper.updateUserByIdentity(users) == 1) {
                 ChangeLog changeLog = new ChangeLog();
                 changeLog.setUserIdentity(users.getUserIdentity());
-                changeLog.setGuardianIdentity(null);
                 changeLog.setChangeReasonContent(changeReason);
                 if (changeLogMapper.insertUserChangeReason(changeLog) == 1) {
                     jsonObject.put("status", 200);
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             jsonObject.put("status", 401);
         }
         return jsonObject;

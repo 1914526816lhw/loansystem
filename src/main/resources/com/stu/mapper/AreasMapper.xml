@@ -1,78 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.stu.mapper.AreasMapper" >
-  <resultMap id="BaseResultMap" type="com.stu.entity.Areas" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
-    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
-    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.stu.mapper.AreasMapper">
+    <resultMap id="BaseResultMap" type="com.stu.entity.Areas">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ProvincesResultMap" type="com.stu.entity.Provinces">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="province_id" property="provinceId" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="CitiesResultMap" type="com.stu.entity.Cities">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="city_id" property="cityId" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="province_id" property="provinceId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="AreaVoResultMap" type="com.stu.vo.AreasVo">
+        <result column="province_id" property="provinceId" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, area_id, area_name, city_id
   </sql>
-  <select id="selectAreaByCityId" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from areas
-    where city_id = #{cityId,jdbcType=VARCHAR}
+    <select id="selectAreaByCityId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from areas
+        where city_id = #{cityId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAreaVoByAreaId" resultMap="AreaVoResultMap" parameterType="java.lang.String">
+        select p.province_id,p.province_name,c.city_id,c.city_name,a.area_id,a.area_name
+        from provinces p,cities c, areas a
+        where p.province_id = c.province_id
+        and c.city_id = a.city_id
+        and a.area_id = #{areaId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from areas
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.stu.entity.Areas" >
+    <insert id="insert" parameterType="com.stu.entity.Areas">
     insert into areas (id, area_id, area_name, 
       city_id)
     values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
       #{cityId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.stu.entity.Areas" >
-    insert into areas
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="areaId != null" >
-        area_id,
-      </if>
-      <if test="areaName != null" >
-        area_name,
-      </if>
-      <if test="cityId != null" >
-        city_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="areaId != null" >
-        #{areaId,jdbcType=VARCHAR},
-      </if>
-      <if test="areaName != null" >
-        #{areaName,jdbcType=VARCHAR},
-      </if>
-      <if test="cityId != null" >
-        #{cityId,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Areas" >
-    update areas
-    <set >
-      <if test="areaId != null" >
-        area_id = #{areaId,jdbcType=VARCHAR},
-      </if>
-      <if test="areaName != null" >
-        area_name = #{areaName,jdbcType=VARCHAR},
-      </if>
-      <if test="cityId != null" >
-        city_id = #{cityId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.stu.entity.Areas" >
+    <insert id="insertSelective" parameterType="com.stu.entity.Areas">
+        insert into areas
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="areaName != null">
+                area_name,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Areas">
+        update areas
+        <set>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                area_name = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.stu.entity.Areas">
     update areas
     set area_id = #{areaId,jdbcType=VARCHAR},
       area_name = #{areaName,jdbcType=VARCHAR},

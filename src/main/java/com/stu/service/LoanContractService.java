@@ -17,4 +17,6 @@ public interface LoanContractService {
     JSONObject getUserInfoByLoanInfo(String userIdentity);
     JSONObject fillLoanAppForm(LoanContract loanContract);
     void createAppForm(String userIdentity,String loanContractId);
+    LoanContract selectByUserIdentityAndLoanId(String userIdentity,int loanId);
+    LoanContract selectByContractId(String contractId);
 }

@@ -8,19 +8,30 @@
         <result column="loan_money" property="loanMoney" jdbcType="DOUBLE"/>
         <result column="loan_date" property="loanDate" jdbcType="TIMESTAMP"/>
         <result column="loan_term" property="loanTerm" jdbcType="INTEGER"/>
-        <result column="repayment_date" property="repaymentDate" jdbcType="TIMESTAMP"/>
         <result column="loan_reason" property="loanReason" jdbcType="VARCHAR"/>
         <result column="loan_statement" property="loanStatement" jdbcType="VARCHAR"/>
         <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
         <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR"/>
+        <result column="loan_progress" property="loanProgress" jdbcType="VARCHAR"/>
     </resultMap>
-    <sql id="Base_Column_List">
-    loan_id, contract_id, loan_name, loan_money, loan_date,loan_term, repayment_date, user_identity,loan_reason,loan_statement, guardian_identity
-  </sql>
-    <select id="selectLoanContractByUserIdentity" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+    <select id="selectByContractId" resultMap="BaseResultMap" parameterType="java.lang.String">
         select * from loanContract
         where contract_id = #{contractId,jdbcType=VARCHAR}
     </select>
+
+    <select id="selectByUserIdentity" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from loanContract
+        where user_identity = #{userIdentity,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByUserIdentityAndLoanId" resultMap="BaseResultMap" parameterType="com.stu.entity.LoanContract">
+        select * from  loanContract
+        where user_identity = #{userIdentity,jdbcType=VARCHAR}
+        and loan_id = #{loanId,jdbcType=INTEGER}
+    </select>
+
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from loanContract
     where loan_id = #{loanId,jdbcType=INTEGER}

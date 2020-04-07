@@ -8,8 +8,6 @@
     <result column="guardian_postal_code" property="guardianPostalCode" jdbcType="VARCHAR" />
     <result column="guardian_health" property="guardianHealth" jdbcType="VARCHAR" />
     <result column="guardian_tel" property="guardianTel" jdbcType="VARCHAR" />
-    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
-    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
     <result column="area_id" property="areaId" jdbcType="VARCHAR" />
     <result column="guardian_permanent_address" property="guardianPermanentAddress" jdbcType="VARCHAR" />
     <result column="user_identity" jdbcType="VARCHAR" property="userIdentity" />
@@ -48,14 +46,12 @@
     <result column="relation" property="relation" jdbcType="VARCHAR" />
     <result column="account_character_id" property="accountCharacterId" jdbcType="INTEGER" />
     <result column="funding_center_id" property="fundingCenterId" jdbcType="INTEGER" />
-    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
-    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
     <result column="area_id" property="areaId" jdbcType="VARCHAR" />
     <result column="user_permanent_address" property="userPermanentAddress" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     guardian_id, guardian_name, guardian_identity, guardian_postal_code, guardian_health, 
-    guardian_tel, province_id, city_id, area_id, guardian_permanent_address,user_identity
+    guardian_tel, area_id, guardian_permanent_address,user_identity
   </sql>
   <select id="selectByUserIdentity" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -70,10 +66,10 @@
   <insert id="insert" parameterType="com.stu.entity.Guardian">
     insert into guardian (guardian_name, guardian_identity,
       guardian_postal_code, guardian_health, guardian_tel, 
-      province_id, city_id, area_id, guardian_permanent_address,user_identity)
+      area_id, guardian_permanent_address,user_identity)
     values (#{guardianName,jdbcType=VARCHAR}, #{guardianIdentity,jdbcType=VARCHAR},
-      #{guardianPostalCode,jdbcType=VARCHAR}, #{guardianHealth,jdbcType=VARCHAR}, #{guardianTel,jdbcType=VARCHAR}, 
-      #{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR}, 
+      #{guardianPostalCode,jdbcType=VARCHAR}, #{guardianHealth,jdbcType=VARCHAR},
+       #{guardianTel,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR},
       #{guardianPermanentAddress,jdbcType=VARCHAR},#{userIdentity,jdbcType=VARCHAR})
   </insert>
 
@@ -84,8 +80,6 @@
       guardian_postal_code = #{guardianPostalCode,jdbcType=VARCHAR},
       guardian_health = #{guardianHealth,jdbcType=VARCHAR},
       guardian_tel = #{guardianTel,jdbcType=VARCHAR},
-      province_id = #{provinceId,jdbcType=VARCHAR},
-      city_id = #{cityId,jdbcType=VARCHAR},
       area_id = #{areaId,jdbcType=VARCHAR},
       guardian_permanent_address = #{guardianPermanentAddress,jdbcType=VARCHAR}
     where user_identity = #{userIdentity,jdbcType=VARCHAR}

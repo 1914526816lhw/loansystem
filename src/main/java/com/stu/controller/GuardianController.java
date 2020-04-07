@@ -41,14 +41,12 @@ public class GuardianController {
     @UserLoginToken
     @RequestMapping("/updateGuardian")
     public JSONObject updateGuardian(
-            String userLoginAccount, String guardianName, String guardianIdentity, String guardianProvinceId, String guardianCityId, String guardianAreaId, String guardianPermanentAddress,
+            String userLoginAccount, String guardianName, String guardianIdentity, String guardianAreaId, String guardianPermanentAddress,
             String guardianPostalCode, String guardianHealth, String guardianTel, String changeReason) {
         Guardian guardian = new Guardian();
         guardian.setUserIdentity(userLoginAccount);
         guardian.setGuardianName(guardianName);
         guardian.setGuardianIdentity(guardianIdentity);
-        guardian.setProvinceId(guardianProvinceId);
-        guardian.setCityId(guardianCityId);
         guardian.setAreaId(guardianAreaId);
         guardian.setGuardianPermanentAddress(guardianPermanentAddress);
         guardian.setGuardianPostalCode(guardianPostalCode);
