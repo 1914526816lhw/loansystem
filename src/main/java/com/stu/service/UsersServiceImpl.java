@@ -3,22 +3,22 @@ package com.stu.service;
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.config.RedisConfig;
-import com.stu.entity.ChangeLog;
-import com.stu.entity.Guardian;
-import com.stu.entity.UserLogin;
-import com.stu.entity.Users;
-import com.stu.mapper.ChangeLogMapper;
-import com.stu.mapper.GuardianMapper;
-import com.stu.mapper.UserLoginMapper;
-import com.stu.mapper.UsersMapper;
+import com.stu.entity.*;
+import com.stu.mapper.*;
 import com.stu.util.DateUtilCurrent;
 import com.stu.util.enAndDeCription.Md5Util;
+import com.stu.vo.AreasVo;
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -46,6 +46,14 @@ public class UsersServiceImpl implements UsersService {
     private GuardianMapper guardianMapper;
     @Autowired
     private ChangeLogMapper changeLogMapper;
+    @Autowired
+    private AreasMapper areasMapper;
+    @Autowired
+    private FamousRaceMapper famousRaceMapper;
+    @Autowired
+    private AccountCharacterMapper characterMapper;
+    @Autowired
+    private FundingCenterMapper centerMapper;
 
     /**
      * MethodName: 用户注册
@@ -277,9 +285,26 @@ public class UsersServiceImpl implements UsersService {
         JSONObject jsonObject = new JSONObject();
         JSONObject data = new JSONObject();
         Users user = usersMapper.selectUserByIdentity(userIdentity);
+//        //获取地区信息
+//        AreasVo areasVo = areasMapper.selectAreaVoByAreaId(user.getAreaId());
+//        //获取名族信息
+//        FamousRace famousRace = famousRaceMapper.selectByFamousRaceId(user.getUserFamousRaceId());
+//        //获取户口性质
+//        AccountCharacter accountCharacter = characterMapper.selectByAccountCharacterId(user.getAccountCharacterId());
+//        //获取资助中心
+//        FundingCenter fundingCenter = centerMapper.selectFundingCenterByCenterId(user.getFundingCenterId());
         if (user != null) {
-            jsonObject.put("status", 200);
+//            jsonObject.put("status", 200);
+//            user.setProvinceId(areasVo.getProvinceId());
+//            user.setProvinceName(areasVo.getProvinceName());
+//            user.setCityId(areasVo.getCityId());
+//            user.setCityName(areasVo.getCityName());
+//            user.setAreaName(areasVo.getAreaName());
+//            user.setUserFamousRaceName(famousRace.getFamousRaceName());
+//            user.setAccountCharacterName(accountCharacter.getAccountCharacterName());
+//            user.setFundingCenterName(fundingCenter.getFundingCenterName());
             data.put("user", user);
+
             jsonObject.put("data", data);
         } else {
             jsonObject.put("data", null);
@@ -302,6 +327,40 @@ public class UsersServiceImpl implements UsersService {
         } catch (Exception e) {
             e.printStackTrace();
             jsonObject.put("status", 401);
+        }
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getUserInfoDetail(String userIdentity) {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject data = new JSONObject();
+
+        Users user = (Users) getUserInfo(userIdentity).getJSONObject("data").get("user");
+
+        //获取地区信息
+        AreasVo areasVo = areasMapper.selectAreaVoByAreaId(user.getAreaId());
+        //获取名族信息
+        FamousRace famousRace = famousRaceMapper.selectByFamousRaceId(user.getUserFamousRaceId());
+        //获取户口性质
+        AccountCharacter accountCharacter = characterMapper.selectByAccountCharacterId(user.getAccountCharacterId());
+        //获取资助中心
+        FundingCenter fundingCenter = centerMapper.selectFundingCenterByCenterId(user.getFundingCenterId());
+        if (user != null) {
+            jsonObject.put("status", 200);
+            user.setProvinceId(areasVo.getProvinceId());
+            user.setProvinceName(areasVo.getProvinceName());
+            user.setCityId(areasVo.getCityId());
+            user.setCityName(areasVo.getCityName());
+            user.setAreaName(areasVo.getAreaName());
+            user.setUserFamousRaceName(famousRace.getFamousRaceName());
+            user.setAccountCharacterName(accountCharacter.getAccountCharacterName());
+            user.setFundingCenterName(fundingCenter.getFundingCenterName());
+            data.put("user", user);
+
+            jsonObject.put("data", data);
+        } else {
+            jsonObject.put("data", null);
         }
         return jsonObject;
     }

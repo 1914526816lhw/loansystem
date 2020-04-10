@@ -75,7 +75,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 } catch (JWTDecodeException e) {
 //                    throw new RuntimeException("401");
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("status", 502    );
+                    jsonObject.put("status", 502);
                     jsonObject.put("message", "会话已过期，请重新登录！");
                     printJson(response, jsonObject);
                     return false;

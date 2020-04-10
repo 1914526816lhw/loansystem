@@ -1,8 +1,16 @@
-package com.stu.entity;
+package com.stu.vo;
 
 import java.util.Date;
 
-public class Users {
+/**
+ * ClassName：UsersVo
+ * Description：
+ *
+ * @author lihw
+ * CreateTime: 2020/4/10 14:37
+ * @version 1.0.0
+ */
+public class UsersVo {
     //用户主键
     private Integer userId;
     //用户名称
@@ -436,4 +444,5 @@ public class Users {
     public void setFundingCenterName(String fundingCenterName) {
         this.fundingCenterName = fundingCenterName;
     }
+
 }

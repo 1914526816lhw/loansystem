@@ -52,9 +52,31 @@ public class LoanContractController {
 
         loanContract.setUserIdentity(userLoginAccount);
         loanContract.setLoanMoney(loanMoney);
+        loanContract.setLoanBalance(loanMoney);
         loanContract.setLoanTerm(loanTerm);
         loanContract.setLoanReason(loanReason);
         loanContract.setLoanStatement(loanStatement);
         return loanContractService.fillLoanAppForm(loanContract);
+    }
+
+    @UserLoginToken
+    @RequestMapping("/loanContractInfo")
+    public JSONObject loanContractInfo(String userLoginAccount,String contractId){
+        return loanContractService.getLoanContractInfo(userLoginAccount, contractId);
+    }
+
+    @UserLoginToken
+    @RequestMapping("/getLoanSchedule")
+    public JSONObject getLoanSchedule(String userLoginAccount){
+        return loanContractService.getLoanSchedule(userLoginAccount);
+    }
+
+    @UserLoginToken
+    @RequestMapping("/updateLoanProgress")
+    public JSONObject updateLoanProgress(String contractId){
+        LoanContract loanContract = new LoanContract();
+        loanContract.setContractId(contractId);
+        loanContract.setContractId("已完成");
+        return loanContractService.updateProgressByContractId(loanContract);
     }
 }

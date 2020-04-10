@@ -32,7 +32,7 @@ public class AlipayServiceImpl implements AlipayService {
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL,AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY,AlipayConfig.FORMAT,AlipayConfig.CHARSET,AlipayConfig.ALIPAY_PUBLIC_KEY,AlipayConfig.SIGNTYPE);
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
-        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+//        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
         AlipayTradeWapPayModel alipayTradeWapPayModel = new AlipayTradeWapPayModel();
         alipayTradeWapPayModel.setOutTradeNo(sourceMap.get("out_trade_no"));
         alipayTradeWapPayModel.setProductCode("FAST_INSTANT_TRADE_PAY");

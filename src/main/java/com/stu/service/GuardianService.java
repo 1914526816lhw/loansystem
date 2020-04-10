@@ -19,4 +19,5 @@ public interface GuardianService {
     JSONObject getGuardianInfo(String userIdentity);
 
     JSONObject updateGuardian(Guardian guardian, String changeReason);
+    JSONObject getGuardianUserInfoDetail(String userIdentity);
 }

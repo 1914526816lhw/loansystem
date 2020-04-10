@@ -1,23 +1,69 @@
 package com.stu.entity;
 
 public class Guardian {
+    //共同贷款人id
     private Integer guardianId;
-
+    //共同贷款人姓名
     private String guardianName;
-
+    //身份证号
     private String guardianIdentity;
-
+    //y邮政编码
     private String guardianPostalCode;
-
+    //健康状况
     private String guardianHealth;
-
+    //手机号码
     private String guardianTel;
-
-    private String areaId;
-
+    //户籍地址
     private String guardianPermanentAddress;
+    //外键，用户身份证号
+    private String userIdentity;
+    //省市区
+    private String provinceId;
+    private String provinceName;
+    private String cityId;
+    private String cityName;
+    private String areaId;
+    private String areaName;
 
-    private String  userIdentity;
+    public String getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(String provinceId) {
+        this.provinceId = provinceId;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getUserIdentity() {
         return userIdentity;

@@ -14,8 +14,8 @@ public class AreasVo {
     private String provinceName;
     private String cityId;
     private String cityName;
-    private String AreaId;
-    private String AreaName;
+    private String areaId;
+    private String areaName;
 
     public String getProvinceId() {
         return provinceId;
@@ -50,18 +50,18 @@ public class AreasVo {
     }
 
     public String getAreaId() {
-        return AreaId;
+        return areaId;
     }
 
     public void setAreaId(String areaId) {
-        AreaId = areaId;
+        this.areaId = areaId;
     }
 
     public String getAreaName() {
-        return AreaName;
+        return areaName;
     }
 
     public void setAreaName(String areaName) {
-        AreaName = areaName;
+        this.areaName = areaName;
     }
 }

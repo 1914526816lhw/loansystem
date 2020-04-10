@@ -15,6 +15,9 @@
     <include refid="Base_Column_List" />
     from fundingCenter
   </select>
+  <select id="selectFundingCenterByCenterId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from fundingCenter where funding_center_id = #{fundingCenterId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from fundingCenter
     where funding_center_id = #{fundingCenterId,jdbcType=INTEGER}

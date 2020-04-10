@@ -6,6 +6,7 @@
         <result column="contract_id" property="contractId" jdbcType="VARCHAR"/>
         <result column="loan_name" property="loanName" jdbcType="VARCHAR"/>
         <result column="loan_money" property="loanMoney" jdbcType="DOUBLE"/>
+        <result column="loan_balance" property="loanBalance" jdbcType="DOUBLE"/>
         <result column="loan_date" property="loanDate" jdbcType="TIMESTAMP"/>
         <result column="loan_term" property="loanTerm" jdbcType="INTEGER"/>
         <result column="loan_reason" property="loanReason" jdbcType="VARCHAR"/>
@@ -13,48 +14,54 @@
         <result column="user_identity" property="userIdentity" jdbcType="VARCHAR"/>
         <result column="guardian_identity" property="guardianIdentity" jdbcType="VARCHAR"/>
         <result column="loan_progress" property="loanProgress" jdbcType="VARCHAR"/>
+        <result column="loan_order_id" property="loanOrderId" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="selectByLoanOrderId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from loanContract
+        where loan_order_id = #{loanOrderId,jdbcType=VARCHAR}
+    </select>
     <select id="selectByContractId" resultMap="BaseResultMap" parameterType="java.lang.String">
         select * from loanContract
         where contract_id = #{contractId,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectByUserIdentity" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByUserIdentityAndContractId" resultMap="BaseResultMap"
+            parameterType="com.stu.entity.LoanContract">
+        select * from  loanContract
+        where user_identity = #{userIdentity,jdbcType=VARCHAR}
+        and contract_id = #{contractId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAllLoanContractByUserIdentity" resultMap="BaseResultMap"
+            parameterType="com.stu.entity.LoanContract">
         select * from loanContract
         where user_identity = #{userIdentity,jdbcType=VARCHAR}
     </select>
-
-    <select id="selectByUserIdentityAndLoanId" resultMap="BaseResultMap" parameterType="com.stu.entity.LoanContract">
-        select * from  loanContract
-        where user_identity = #{userIdentity,jdbcType=VARCHAR}
-        and loan_id = #{loanId,jdbcType=INTEGER}
-    </select>
-
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from loanContract
     where loan_id = #{loanId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.stu.entity.LoanContract">
-    insert into loanContract (contract_id,loan_money,loan_term,loan_reason,
-    loan_statement,user_identity, guardian_identity)
-    values (#{contractId,jdbcType=VARCHAR}, #{loanMoney,jdbcType=DOUBLE},
+    insert into loanContract (contract_id,loan_money,loan_balance,loan_term,loan_reason,
+    loan_statement,user_identity, guardian_identity,loan_order_id)
+    values (#{contractId,jdbcType=VARCHAR}, #{loanMoney,jdbcType=DOUBLE}, #{loanBalance,jdbcType=DOUBLE},
     #{loanTerm,jdbcType=INTEGER},#{loanReason,jdbcType=VARCHAR},
     #{loanStatement,jdbcType=VARCHAR},#{userIdentity,jdbcType=VARCHAR},
-    #{guardianIdentity,jdbcType=VARCHAR})
+    #{guardianIdentity,jdbcType=VARCHAR},#{loanOrderId,jdbcType=VARCHAR})
   </insert>
-    <update id="updateByPrimaryKey" parameterType="com.stu.entity.LoanContract">
+    <update id="updateLoanConTractByLoanId" parameterType="com.stu.entity.LoanContract">
     update loanContract
-    set contract_id = #{contractId,jdbcType=VARCHAR},
-      loan_name = #{loanName,jdbcType=VARCHAR},
-      loan_money = #{loanMoney,jdbcType=DOUBLE},
-      loan_date = #{loanDate,jdbcType=TIMESTAMP},
-      repayment_date = #{repaymentDate,jdbcType=TIMESTAMP},
-      loan_reason = #{loanReason,jdbcType=VARCHAR},
-      loan_statement = #{loanStatement,jdbcType=VARCHAR},
-      user_identity = #{userIdentity,jdbcType=VARCHAR},
-      guardian_identity = #{guardianIdentity,jdbcType=VARCHAR}
-    where loan_id = #{loanId,jdbcType=INTEGER}
-  </update>
+    set
+      loan_balance = #{loanBalance,jdbcType=DOUBLE},
+      loan_order_id = #{loanOrderId,jdbcType=VARCHAR}
+      where loan_id = #{loanId,jdbcType=INTEGER}
+   </update>
+
+    <update id="updateLoanProgress" parameterType="com.stu.entity.LoanContract">
+        update loanContract
+        set loan_progress = #{loanProgress,jdbcType=VARCHAR}
+        where contract_id = #{contractId,jdbcType=VARCHAR}
+    </update>
 </mapper>

@@ -35,9 +35,11 @@ import java.util.Set;
  * @version 1.0.0
  */
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class AlipayController {
+
+    public static int i=0;
 
     @Autowired
     public AlipayService alipayService;
@@ -46,18 +48,19 @@ public class AlipayController {
     @Autowired
     private PayLogService payLogService;
 
+
     @RequestMapping("/pay")
-    public void toAlipay(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String userLoginAccount, int loanId) throws IOException {
+    public void toAlipay(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String userLoginAccount, String contractId,double repaymentAmount) throws IOException {
 
         //生成一笔支付记录，支付完成时将支付状态改为成功
 
         //根据 userLoginAccount 和 loanId 查询 LoanContract
-        LoanContract loanContract = loanContractService.selectByUserIdentityAndLoanId(userLoginAccount, loanId);
+        LoanContract loanContract = loanContractService.selectByUserIdentityAndContractId(userLoginAccount, contractId);
 
         String str = DateUtil.year(loanContract.getLoanDate()) + " - " + (DateUtil.year(loanContract.getLoanDate()) + 1);
         Map<String, String> sourceMap = new HashMap<>();
-        sourceMap.put("out_trade_no", loanContract.getContractId());
-        sourceMap.put("total_amount", String.valueOf(loanContract.getLoanMoney()));
+        sourceMap.put("out_trade_no", loanContract.getLoanOrderId());
+        sourceMap.put("total_amount", String.valueOf(repaymentAmount));
         sourceMap.put("body", str + "学年还款。");
         sourceMap.put("product_name", "学生生源地助学贷款");
 
@@ -74,6 +77,8 @@ public class AlipayController {
     public String notify_url(HttpServletRequest request) {
         Map<String, String> paramsMap = convertRequestParamsToMap(request);
         String out_trade_no = paramsMap.get("out_trade_no");
+        String total_amount = paramsMap.get("total_amount");
+        System.out.println(total_amount);
         String trade_status = paramsMap.get("trade_status");
         try {
             boolean signVerified = AlipaySignature.rsaCheckV1(paramsMap, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.CHARSET, AlipayConfig.SIGNTYPE);
@@ -83,15 +88,22 @@ public class AlipayController {
                     //处理自己系统的业务逻辑，如：将支付记录状态改为成功，需要返回一个字符串success告知支付宝服务器
                     //还款成功
                     System.out.println(out_trade_no);
-                    LoanContract loanContract = loanContractService.selectByContractId(out_trade_no);
+                    LoanContract loanContract = loanContractService.selectByLoanOrderId(out_trade_no);
                     if (loanContract != null) {
                         PayLog payLog = new PayLog();
                         payLog.setUserIdentity(loanContract.getUserIdentity());
                         payLog.setLoanContract(loanContract.getContractId());
-                        payLog.setPayMoney(loanContract.getLoanMoney());
-                        payLogService.addPayLog(payLog);
+                        payLog.setPayMoney(Double.valueOf(total_amount));
+                        if(payLogService.addPayLog(payLog)==1){
+                            LoanContract updateLoanContract = new LoanContract();
+                            updateLoanContract.setLoanBalance(loanContract.getLoanBalance()-Double.valueOf(total_amount));
+                            updateLoanContract.setLoanOrderId(RandomOrderNoUtil.getRandomFileName());
+                            updateLoanContract.setLoanId(loanContract.getLoanId());
+                            loanContractService.updateLoanConTractByLoanId(updateLoanContract);
+                        }
+
                     }
-                    return "success";
+                    return "redirect:/alipaytest.html";
                 } else {
                     //支付失败不处理业务逻辑
                     return "failure";
@@ -111,21 +123,30 @@ public class AlipayController {
     public String return_url(HttpServletRequest request) {
         Map<String, String> paramsMap = convertRequestParamsToMap(request);
         String out_trade_no = paramsMap.get("out_trade_no");
+        String total_amount = paramsMap.get("total_amount");
+        System.out.println(total_amount);
         try {
             boolean signVerified = AlipaySignature.rsaCheckV1(paramsMap, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.CHARSET, AlipayConfig.SIGNTYPE);
             if (signVerified) {
                 //跳转支付成功界面
                 //还款成功
                 System.out.println(out_trade_no);
-                LoanContract loanContract = loanContractService.selectByContractId(out_trade_no);
+                LoanContract loanContract = loanContractService.selectByLoanOrderId(out_trade_no);
                 if (loanContract != null) {
                     PayLog payLog = new PayLog();
                     payLog.setUserIdentity(loanContract.getUserIdentity());
                     payLog.setLoanContract(loanContract.getContractId());
-                    payLog.setPayMoney(loanContract.getLoanMoney());
-                    payLogService.addPayLog(payLog);
+                    payLog.setPayMoney(Double.valueOf(total_amount));
+                    if(payLogService.addPayLog(payLog)==1){
+                        LoanContract updateLoanContract = new LoanContract();
+                        updateLoanContract.setLoanBalance(loanContract.getLoanBalance()-Double.valueOf(total_amount));
+                        updateLoanContract.setLoanOrderId(RandomOrderNoUtil.getRandomFileName());
+                        updateLoanContract.setLoanId(loanContract.getLoanId());
+                        loanContractService.updateLoanConTractByLoanId(updateLoanContract);
+                    }
+
                 }
-                return "支付成功";
+                return "redirect:/alipaytest.html";
 
             } else {
                 //跳转支付失败界面
@@ -133,8 +154,8 @@ public class AlipayController {
             }
         } catch (AlipayApiException e) {
             e.printStackTrace();
+            return "failure";
         }
-        return "success";
     }
 
 

@@ -11,8 +11,8 @@ package com.stu.util.file;
 public class PdfPath {
 
     /*PDF导出参考模板*/
-    public static String PDF_TEMPLATE_PATH = "D:/software/programmingTools/javaTools/IDEA/project/IDEAProject/loansystem/src/main/resources/static/PDFReference/stuLoanAppFormReference.pdf";
+    public static String PDF_TEMPLATE_PATH = "/user/local/users/lihw/project/model/stuLoanAppFormReference.pdf";
     /*PDF导出路径*/
-    public static String PDF_NEW_PATH = "D:/software/programmingTools/javaTools/IDEA/project/IDEAProject/loansystem/src/main/resources/static/upload/stuLoanAppForm.pdf";
+    public static String PDF_NEW_PATH = "/user/local/users/lihw/project/upload/";
 
 }

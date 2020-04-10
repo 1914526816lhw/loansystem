@@ -39,7 +39,7 @@ public class DateUtilCurrent {
      * @return
      */
     public static String getDate(Date strDate) {
-        DateFormat simpleDateFormat= new SimpleDateFormat("yyyy年MM月dd日");
+        DateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd");
         String newDate = null;
         try {
           newDate =  simpleDateFormat.format(strDate);

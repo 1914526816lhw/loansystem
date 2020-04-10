@@ -23,7 +23,7 @@ spring:
 ##文件存储所需参数(file.upload-dir =./uploads 为自定义的参数)
 #所有通过 REST APIs 上传的文件都将存储在此目录下
 file:
-  upload-dir: D:\software\programmingTools\javaTools\IDEA\project\IDEAProject\loansystem\src\main\resources\static\upload
+  upload-dir: /user/local/users/lihw/project/upload
 
   #redis的配置
   redis:

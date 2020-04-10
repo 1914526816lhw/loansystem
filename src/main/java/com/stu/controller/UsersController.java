@@ -6,6 +6,8 @@ import com.stu.annotation.UserLoginToken;
 import com.stu.entity.Guardian;
 
 import com.stu.entity.Users;
+import com.stu.service.GuardianService;
+import com.stu.service.LoanContractService;
 import com.stu.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,10 @@ public class UsersController {
 
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private LoanContractService loanContractService;
+    @Autowired
+    private GuardianService guardianService;
 
     /**
      * MethodName: register
@@ -243,4 +249,26 @@ public class UsersController {
         user.setUserMajorCategory(userMajorCategory);
         return usersService.updateUser(user,changeReason);
     }
+
+    @UserLoginToken
+    @RequestMapping("/getAllLoanContract")
+    public JSONObject getUserAllLoanContract(String userLoginAccount){
+        return loanContractService.getAllLoanContractByUserIdentity(userLoginAccount);
+    }
+
+    @UserLoginToken
+    @RequestMapping("/getUserDetail")
+    public JSONObject getUserDetail(String userLoginAccount){
+        JSONObject userJson = usersService.getUserInfoDetail(userLoginAccount).getJSONObject("data").getJSONObject("user");
+        JSONObject guardianJson = guardianService.getGuardianUserInfoDetail(userLoginAccount).getJSONObject("data").getJSONObject("guardian");
+
+        JSONObject jsonObject = new JSONObject();
+        JSONObject data = new JSONObject();
+        jsonObject.put("status",200);
+        data.put("user",userJson);
+        data.put("guardian",guardianJson);
+        jsonObject.put("data",data);
+        return jsonObject;
+    }
+
 }

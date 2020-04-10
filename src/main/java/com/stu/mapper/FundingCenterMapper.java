@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface FundingCenterMapper {
    List<FundingCenter> selectAllFundingCenter();
+   FundingCenter selectFundingCenterByCenterId(int fundingCenterId);
 }

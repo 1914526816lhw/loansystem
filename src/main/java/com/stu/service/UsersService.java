@@ -3,6 +3,7 @@ package com.stu.service;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.entity.Guardian;
 import com.stu.entity.Users;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletResponse;
@@ -29,4 +30,5 @@ public interface UsersService {
     JSONObject improveUserInfo(Guardian guardian, Users users);
     JSONObject getUserInfo(String userIdentity);
     JSONObject updateUser(Users users,String changeReason);
+    JSONObject getUserInfoDetail(String userIdentity);
 }

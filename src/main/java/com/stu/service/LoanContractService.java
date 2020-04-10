@@ -17,6 +17,11 @@ public interface LoanContractService {
     JSONObject getUserInfoByLoanInfo(String userIdentity);
     JSONObject fillLoanAppForm(LoanContract loanContract);
     void createAppForm(String userIdentity,String loanContractId);
-    LoanContract selectByUserIdentityAndLoanId(String userIdentity,int loanId);
-    LoanContract selectByContractId(String contractId);
+    LoanContract selectByUserIdentityAndContractId(String userIdentity,String contractId);
+    LoanContract selectByLoanOrderId(String contractId);
+    int updateLoanConTractByLoanId(LoanContract loanContract);
+    JSONObject getAllLoanContractByUserIdentity(String userIdentity);
+    JSONObject getLoanContractInfo(String userIdentity,String contractId);
+    JSONObject getLoanSchedule(String userIdentity);
+    JSONObject updateProgressByContractId(LoanContract loanContract);
 }

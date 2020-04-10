@@ -3,6 +3,7 @@ package com.stu.entity;
 import java.util.Date;
 
 public class LoanContract {
+
     private Integer loanId;
 
     private String contractId;
@@ -11,10 +12,11 @@ public class LoanContract {
 
     private Double loanMoney;
 
+    private Double loanBalance;
+
     private Date loanDate;
 
     private int loanTerm;
-
 
     private String loanReason;
 
@@ -23,7 +25,10 @@ public class LoanContract {
     private String userIdentity;
 
     private String guardianIdentity;
+
     private String loanProgress;
+
+    private String loanOrderId;
 
     public String getLoanProgress() {
         return loanProgress;
@@ -107,5 +112,25 @@ public class LoanContract {
 
     public void setLoanTerm(int loanTerm) {
         this.loanTerm = loanTerm;
+    }
+
+    public Double getLoanBalance() {
+        return loanBalance;
+    }
+
+    public void setLoanBalance(Double loanBalance) {
+        this.loanBalance = loanBalance;
+    }
+
+    public void setLoanDate(Date loanDate) {
+        this.loanDate = loanDate;
+    }
+
+    public String getLoanOrderId() {
+        return loanOrderId;
+    }
+
+    public void setLoanOrderId(String loanOrderId) {
+        this.loanOrderId = loanOrderId;
     }
 }
