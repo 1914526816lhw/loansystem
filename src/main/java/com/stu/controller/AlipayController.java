@@ -103,18 +103,18 @@ public class AlipayController {
                         }
 
                     }
-                    return "redirect:/alipaytest.html";
+                    return "redirect:/success.html";
                 } else {
                     //支付失败不处理业务逻辑
-                    return "failure";
+                    return "redirect:/fail.html";
                 }
             } else {
                 //签名验证失败不处理业务逻辑
-                return "failure";
+                return "redirect:/fail.html";
             }
         } catch (AlipayApiException e) {
             e.printStackTrace();
-            return "failure";
+            return "redirect:/fail.html";
         }
     }
 
@@ -144,17 +144,16 @@ public class AlipayController {
                         updateLoanContract.setLoanId(loanContract.getLoanId());
                         loanContractService.updateLoanConTractByLoanId(updateLoanContract);
                     }
-
                 }
-                return "redirect:/alipaytest.html";
+                return "redirect:/success.html";
 
             } else {
                 //跳转支付失败界面
-                return "failure";
+                return "redirect:/fail.html";
             }
         } catch (AlipayApiException e) {
             e.printStackTrace();
-            return "failure";
+            return "redirect:/fail.html";
         }
     }
 

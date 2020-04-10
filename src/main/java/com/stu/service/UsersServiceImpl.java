@@ -303,10 +303,11 @@ public class UsersServiceImpl implements UsersService {
 //            user.setUserFamousRaceName(famousRace.getFamousRaceName());
 //            user.setAccountCharacterName(accountCharacter.getAccountCharacterName());
 //            user.setFundingCenterName(fundingCenter.getFundingCenterName());
-            data.put("user", user);
-
+            data.put("user",user);
+            jsonObject.put("status",200);
             jsonObject.put("data", data);
         } else {
+            jsonObject.put("status",401);
             jsonObject.put("data", null);
         }
         return jsonObject;
