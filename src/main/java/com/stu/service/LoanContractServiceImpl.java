@@ -227,7 +227,7 @@ public class LoanContractServiceImpl implements LoanContractService {
                 jsonObject.put("data", null);
             }
         } else {
-            jsonObject.put("status", 401);
+            jsonObject.put("status", 200);
             jsonObject.put("data", null);
         }
 
