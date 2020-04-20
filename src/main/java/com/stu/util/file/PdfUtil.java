@@ -20,22 +20,25 @@ public class PdfUtil {
 
 
     // 利用模板生成pdf
-    public static void pdfout(Map<String, Object> o,String userIdentity){
-        // 模板路径
-        String templatePath = PdfPath.PDF_TEMPLATE_PATH;
-
-        // 生成心得文件名
-        String pdfName = userIdentity+"的助学贷款申请表.pdf";
+    public static void pdfout(Map<String, Object> o, String pdfName, int flag) {
+        String templatePath = null;
+        if (flag == 1) {
+            // 模板路径
+            templatePath = PdfPath.PDF_TEMPLATE_LOAN_APP_PATH;
+        } else if (flag == 2) {
+            System.out.println(pdfName);
+            templatePath = PdfPath.PDF_TEMPLATE_LOAN_CONTRACT_PATH;
+        }
 
         // 生成的新文件路径
-        String newPDFPath = PdfPath.PDF_NEW_PATH+pdfName;
+        String newPDFPath = PdfPath.PDF_NEW_PATH + pdfName;
 
         PdfReader reader;
         FileOutputStream out;
         ByteArrayOutputStream bos;
         PdfStamper stamper;
         try {
-            BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H",BaseFont.NOT_EMBEDDED);
+            BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
             Font FontChinese = new Font(bf, 5, Font.NORMAL);
             out = new FileOutputStream(newPDFPath);// 输出流
             reader = new PdfReader(templatePath);// 读取pdf模板

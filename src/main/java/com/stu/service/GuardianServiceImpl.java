@@ -59,14 +59,14 @@ public class GuardianServiceImpl implements GuardianService {
         JSONObject jsonObject = new JSONObject();
         JSONObject data = new JSONObject();
         Guardian guardian = guardianMapper.selectByUserIdentity(userIdentity);
-//        AreasVo areasVo = areasMapper.selectAreaVoByAreaId(guardian.getAreaId());
+        AreasVo areasVo = areasMapper.selectAreaVoByAreaId(guardian.getAreaId());
         if (guardian != null) {
             jsonObject.put("status", 200);
-//            guardian.setProvinceId(areasVo.getProvinceId());
-//            guardian.setProvinceName(areasVo.getProvinceName());
-//            guardian.setCityId(areasVo.getCityId());
-//            guardian.setCityName(areasVo.getCityName());
-//            guardian.setAreaName(areasVo.getAreaName());
+            guardian.setProvinceId(areasVo.getProvinceId());
+            guardian.setProvinceName(areasVo.getProvinceName());
+            guardian.setCityId(areasVo.getCityId());
+            guardian.setCityName(areasVo.getCityName());
+            guardian.setAreaName(areasVo.getAreaName());
             data.put("guardian", guardian);
             jsonObject.put("data", data);
         } else {
@@ -105,14 +105,14 @@ public class GuardianServiceImpl implements GuardianService {
         JSONObject jsonObject = new JSONObject();
         JSONObject data = new JSONObject();
         Guardian guardian = (Guardian) getGuardianInfo(userIdentity).getJSONObject("data").get("guardian");
-        AreasVo areasVo = areasMapper.selectAreaVoByAreaId(guardian.getAreaId());
+//        AreasVo areasVo = areasMapper.selectAreaVoByAreaId(guardian.getAreaId());
         if (guardian != null) {
             jsonObject.put("status", 200);
-            guardian.setProvinceId(areasVo.getProvinceId());
-            guardian.setProvinceName(areasVo.getProvinceName());
-            guardian.setCityId(areasVo.getCityId());
-            guardian.setCityName(areasVo.getCityName());
-            guardian.setAreaName(areasVo.getAreaName());
+//            guardian.setProvinceId(areasVo.getProvinceId());
+//            guardian.setProvinceName(areasVo.getProvinceName());
+//            guardian.setCityId(areasVo.getCityId());
+//            guardian.setCityName(areasVo.getCityName());
+//            guardian.setAreaName(areasVo.getAreaName());
             data.put("guardian", guardian);
             jsonObject.put("data", data);
         } else {

@@ -103,7 +103,7 @@ public class AlipayController {
                         }
 
                     }
-                    return "redirect:/success.html";
+                    return "redirect:http://106.15.203.32:9999/success.html";
                 } else {
                     //支付失败不处理业务逻辑
                     return "redirect:/fail.html";
@@ -145,7 +145,7 @@ public class AlipayController {
                         loanContractService.updateLoanConTractByLoanId(updateLoanContract);
                     }
                 }
-                return "redirect:/success.html";
+                return "redirect:http://106.15.203.32:9999/success.html";
 
             } else {
                 //跳转支付失败界面

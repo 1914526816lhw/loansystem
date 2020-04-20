@@ -28,4 +28,10 @@ public class FundingCenterController {
     public JSONObject getFundingCenterList(){
         return fundingCenterService.getAllFundingCenter();
     }
+
+    @UserLoginToken
+    @RequestMapping("/getFundingCenter")
+    public JSONObject getFundingCenter(String userLoginAccount){
+        return fundingCenterService.getFundingCenter(userLoginAccount);
+    }
 }

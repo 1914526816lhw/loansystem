@@ -9,6 +9,7 @@ import com.stu.entity.Guardian;
 import com.stu.entity.LoanContract;
 import com.stu.entity.Users;
 import com.stu.mapper.*;
+import com.stu.util.AmountConversionUtil;
 import com.stu.util.ChineseToFirstLetterUtil;
 import com.stu.util.DateUtilCurrent;
 import com.stu.util.RandomOrderNoUtil;
@@ -179,7 +180,8 @@ public class LoanContractServiceImpl implements LoanContractService {
         map.put("userBankCardId", user.getUserBankCardId());
         Map<String, Object> objectMap = new HashMap();
         objectMap.put("dataMap", map);
-        PdfUtil.pdfout(objectMap,userIdentity);
+        String pdfName = userIdentity + "的助学贷款申请表.pdf";
+        PdfUtil.pdfout(objectMap, pdfName, 1);
     }
 
 
@@ -204,6 +206,7 @@ public class LoanContractServiceImpl implements LoanContractService {
         JSONObject loanJson = new JSONObject();
         JSONArray loanJsonArray = new JSONArray();
         List<LoanContract> contractList = loanContractMapper.selectAllLoanContractByUserIdentity(userIdentity);
+        System.out.println(contractList.size());
         if (contractList.size() > 0) {
             for (LoanContract loanContract : contractList) {
                 if (loanContract.getLoanBalance() > 0 & "已完成".equals(loanContract.getLoanProgress())) {
@@ -220,7 +223,8 @@ public class LoanContractServiceImpl implements LoanContractService {
             if (jsonObject.get("data") != null) {
                 jsonObject.put("status", 200);
             } else {
-                jsonObject.put("status", 401);
+                jsonObject.put("status", 200);
+                jsonObject.put("data", null);
             }
         } else {
             jsonObject.put("status", 401);
@@ -295,10 +299,12 @@ public class LoanContractServiceImpl implements LoanContractService {
     }
 
     @Override
-    public JSONObject updateProgressByContractId(LoanContract loanContract) {
+    public JSONObject updateProgressByContractId(String userIdentity, LoanContract loanContract) {
         JSONObject jsonObject = new JSONObject();
         try {
             if (loanContractMapper.updateLoanProgress(loanContract) == 1) {
+                //创建贷款合同
+                createContract(userIdentity, loanContract.getContractId());
                 jsonObject.put("status", 200);
             } else {
                 jsonObject.put("status", 401);
@@ -307,5 +313,78 @@ public class LoanContractServiceImpl implements LoanContractService {
             e.printStackTrace();
         }
         return jsonObject;
+    }
+
+    @Override
+    public JSONObject currentIsLoan(String userIdentity) {
+        JSONObject jsonObject = new JSONObject();
+        List<LoanContract> loanContractList = loanContractMapper.selectAllLoanContractByUserIdentity(userIdentity);
+        Users users = usersMapper.selectUserByIdentity(userIdentity);
+        if (DateUtilCurrent.getCurrentYear() == DateUtil.year(users.getUserGraduationTime())) {
+            jsonObject.put("status", 403);
+            jsonObject.put("message", "当年是毕业年份，不能贷款");
+            return jsonObject;
+        }
+        if (loanContractList != null && loanContractList.size() > 0) {
+            for (LoanContract contract : loanContractList) {
+//            System.out.println(DateUtil.year(fetchLoanYear.getLoanDate()));
+                if (DateUtilCurrent.getCurrentYear() == DateUtil.year(contract.getLoanDate())) {
+                    if ("审核中".equals(contract.getLoanProgress())) {
+                        jsonObject.put("status", 401);
+                        jsonObject.put("message", "当年贷款审核中");
+                    } else if ("已完成".equals(contract.getLoanProgress())) {
+                        jsonObject.put("status", 402);
+                        jsonObject.put("message", "当年贷款已完成");
+                    }
+                    break;
+                } else {
+                    jsonObject.put("status", 200);
+                    jsonObject.put("message", "可以贷款");
+                    break;
+                }
+            }
+        } else {
+            jsonObject.put("status", 200);
+            jsonObject.put("message", "可以贷款");
+        }
+        return jsonObject;
+    }
+
+    @Override
+    public void createContract(String userIdentity, String contractId) {
+        //根据 userIdentity 获取用户信息
+        Users user = usersMapper.selectUserByIdentity(userIdentity);
+        //根据 userIdentity 获取助贷机构信息
+        FundingCenter fundingCenter = fundingCenterMapper.selectFundingCenterByCenterId(user.getFundingCenterId());
+        //根据 userIdentity 获取共同贷款人信息
+        Guardian guardian = guardianMapper.selectByUserIdentity(userIdentity);
+        AreasVo guardianAreasVo = areasMapper.selectAreaVoByAreaId(guardian.getAreaId());
+        //根据 userIdentity 获取贷款合同信息
+        LoanContract loanContract = loanContractMapper.selectByContractId(contractId);
+        Map<String, String> map = new HashMap();
+        Map<String, Object> o = new HashMap();
+        map.put("contractId", contractId);
+        map.put("schoolYear", DateUtilCurrent.getCurrentYear() + " - " + (DateUtilCurrent.getCurrentYear() + 1));
+        map.put("userName", user.getUserName());
+        map.put("userIdentity", userIdentity);
+        map.put("userPhone", user.getUserPhone());
+        map.put("middleSchool", user.getUserMiddleSchool());
+        map.put("enrollmentYear", user.getUserEnrollmentYear() + "/9");
+        map.put("guardianName", guardian.getGuardianName());
+        map.put("guardianIdentity", guardian.getGuardianIdentity());
+        map.put("relation", user.getRelation());
+        map.put("guardianPostalAddress", guardianAreasVo.getProvinceName() + guardianAreasVo.getCityName()
+                + guardianAreasVo.getAreaName() + guardian.getGuardianPermanentAddress());
+        map.put("guardianPhone", guardian.getGuardianTel());
+        map.put("fundingCenter", fundingCenter.getFundingCenterName());
+        map.put("fundingCenterPhone", fundingCenter.getFundingCenterPhone());
+        map.put("fundingCenterAddress", fundingCenter.getFundingCenterAddress());
+        map.put("loanMoney", loanContract.getLoanMoney().toString());
+        map.put("loanMoneyUpper", AmountConversionUtil.getAmountUpper(loanContract.getLoanMoney()));
+        map.put("loanTermDate", String.valueOf(DateUtil.year(loanContract.getLoanDate()) + loanContract.getLoanTerm()));
+        map.put("userBankCardId", user.getUserBankCardId());
+        o.put("dataMap", map);
+        String pdfName = userIdentity + "合同编号为" + contractId + "的贷款合同.pdf";
+        PdfUtil.pdfout(o, pdfName, 2);
     }
 }

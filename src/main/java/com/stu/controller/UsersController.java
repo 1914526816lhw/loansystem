@@ -1,5 +1,7 @@
 package com.stu.controller;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.stu.annotation.PassToken;
 import com.stu.annotation.UserLoginToken;
@@ -9,6 +11,7 @@ import com.stu.entity.Users;
 import com.stu.service.GuardianService;
 import com.stu.service.LoanContractService;
 import com.stu.service.UsersService;
+import com.stu.util.DateUtilCurrent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -232,7 +235,7 @@ public class UsersController {
         Users user = new Users();
         user.setUserIdentity(userLoginAccount);
         user.setUserSex(userSex);
-        user.setUserBirthday(userBirthday);
+        user.setUserBirthday(DateUtilCurrent.addDate(userBirthday));
         user.setUserMiddleSchool(userMiddleSchool);
         user.setUserPostalCode(userPostalCode);
         user.setUserMailBox(userMailBox);

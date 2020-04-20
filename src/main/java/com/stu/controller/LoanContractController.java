@@ -73,10 +73,17 @@ public class LoanContractController {
 
     @UserLoginToken
     @RequestMapping("/updateLoanProgress")
-    public JSONObject updateLoanProgress(String contractId){
+    public JSONObject updateLoanProgress(String userLoginAccount,String contractId){
         LoanContract loanContract = new LoanContract();
         loanContract.setContractId(contractId);
-        loanContract.setContractId("已完成");
-        return loanContractService.updateProgressByContractId(loanContract);
+        loanContract.setLoanProgress("已完成");
+        return loanContractService.updateProgressByContractId(userLoginAccount,loanContract);
+    }
+
+
+    @UserLoginToken
+    @RequestMapping("/currentIsLoan")
+    public JSONObject currentIsLoan(String userLoginAccount){
+        return loanContractService.currentIsLoan(userLoginAccount);
     }
 }
